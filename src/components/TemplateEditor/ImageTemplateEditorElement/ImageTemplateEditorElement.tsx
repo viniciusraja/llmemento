@@ -1,16 +1,18 @@
+import { Image } from "@chakra-ui/react";
 import { ImageElement } from "../templateTypes";
 
 const ImageTemplateEditorElement = ({
   metadata,
   size,
-  ...props
+  position,
 }: ImageElement) => {
   return (
-    <img
+    <Image
       src={metadata.imageApi?.url}
-      height={size.height}
-      width={size.width}
-      {...props}
+      width={"100%"}
+      position="relative"
+      top={position?.y}
+      left={position?.x}
     />
   );
 };
