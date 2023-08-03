@@ -67,7 +67,7 @@ interface TextOutline {
   width: number;
 }
 
-interface TextElement {
+export interface TextElement {
   id: string;
   metadata: Metadata;
   size: Size;
