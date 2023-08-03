@@ -1,13 +1,12 @@
 "use client";
 
+import { Box } from "@chakra-ui/react";
 import TemplateEditor from "~/components/TemplateEditor";
 
 export default function Home() {
   return (
-    <>
-      {/* <TemplatePDFRender /> */}
-      {/* <img src={ImageTest} alt="Base64 Image" width={500} /> */}
+    <Box w="100%" h="100%" bg="#fff">
       <TemplateEditor />
-    </>
+    </Box>
   );
 }
