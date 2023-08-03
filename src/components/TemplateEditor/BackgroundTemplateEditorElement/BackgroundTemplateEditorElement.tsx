@@ -1,10 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 import { BackgroundTemplateElement } from "../templateTypes";
 import mmToPixels from "./util/mmToPixels";
 
 type BackgroundTemplateEditorElementProps = {
-  children: ReactElement;
+  children: ReactNode | null;
   backgroundConfig: BackgroundTemplateElement;
 };
 
@@ -18,6 +18,9 @@ const BackgroundTemplateEditorElement = ({
     <Box
       bg={`rgba(${r},${g},${b},${a})`}
       overflow="hidden"
+      position="relative"
+      top={"100px"}
+      left={"25%"}
       height={mmToPixels(pageConfig?.size?.height)}
       width={mmToPixels(pageConfig?.size?.width)}
     >
