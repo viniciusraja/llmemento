@@ -136,6 +136,5 @@ export interface BackgroundTemplateElement extends BackgroundColor {
   serializable: boolean;
   id: string;
   validForVariant: boolean;
-  size: Size;
   pageConfig: PageConfig;
 }
