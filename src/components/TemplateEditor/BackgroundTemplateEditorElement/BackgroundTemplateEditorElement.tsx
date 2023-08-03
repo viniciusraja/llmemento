@@ -18,8 +18,8 @@ const BackgroundTemplateEditorElement = ({
     <Box
       bg={`rgba(${r},${g},${b},${a})`}
       overflow="hidden"
-      height={mmToPixels(pageConfig?.size?.height, pageConfig?.size?.dpi)}
-      width={mmToPixels(pageConfig?.size?.width, pageConfig?.size?.dpi)}
+      height={mmToPixels(pageConfig?.size?.height)}
+      width={mmToPixels(pageConfig?.size?.width)}
     >
       {children}
     </Box>
