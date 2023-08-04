@@ -1,4 +1,3 @@
-import file from "~/components/SampleTemplate.json";
 import ImageTemplateEditorElement from "./ImageTemplateEditorElement";
 import { TemplateElement } from "./templateTypes";
 import BackgroundTemplateEditorElement from "./BackgroundTemplateEditorElement";
@@ -14,7 +13,7 @@ const TemplateEditor = () => {
 
   const elementsToRender = Object.values(
     uploadedTemplateEditor?.elements || {}
-  ) as any as TemplateElement[];
+  );
 
   return (
     <HStack w="100%" spacing="0" h="100vh" overflow="hidden">
