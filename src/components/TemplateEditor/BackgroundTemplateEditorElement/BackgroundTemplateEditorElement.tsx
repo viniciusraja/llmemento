@@ -12,15 +12,14 @@ const BackgroundTemplateEditorElement = ({
   children,
   backgroundConfig,
 }: BackgroundTemplateEditorElementProps) => {
-  const { pageConfig, r, g, b, a } = backgroundConfig;
+  const { pageConfig, r, g, b, a } = backgroundConfig || {};
 
   return (
     <Box
       bg={`rgba(${r},${g},${b},${a})`}
       overflow="hidden"
       position="relative"
-      top={"100px"}
-      left={"25%"}
+      style={{ transform: `scale(0.5)` }}
       height={mmToPixels(pageConfig?.size?.height)}
       width={mmToPixels(pageConfig?.size?.width)}
     >
