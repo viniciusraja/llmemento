@@ -138,3 +138,8 @@ export interface BackgroundTemplateElement extends BackgroundColor {
   validForVariant: boolean;
   pageConfig: PageConfig;
 }
+
+export type TemplateData = {
+  background: BackgroundTemplateElement;
+  elements: Elements;
+};
