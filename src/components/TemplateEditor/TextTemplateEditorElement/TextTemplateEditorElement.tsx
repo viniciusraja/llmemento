@@ -1,6 +1,6 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import { TextElement } from "../templateTypes";
-import dompurify from "dompurify";
+import getSanitizedString from "../TemplateEditorForm/utils/getSanitizedString";
 
 type TextTemplateEditorElementProps = {} & TextElement;
 
@@ -15,7 +15,7 @@ const TextTemplateEditorElement = ({
   fontStyle,
   fontWeight,
 }: TextTemplateEditorElementProps) => {
-  const safeHtml = dompurify.sanitize(content);
+  const safeHtml = getSanitizedString(content);
   const textValidStyles = {
     textAlign,
     fontFamily,
