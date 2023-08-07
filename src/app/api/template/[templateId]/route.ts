@@ -3,65 +3,77 @@ import updateTemplateById from "../_utils/updateTemplateById";
 import deleteTemplateById from "../_utils/deleteTemplateById";
 import { NextResponse } from "next/server";
 import limitRoute from "../../_utils/limitNumberOfRequests";
+import getHeaders from "../../_utils/getHeaders";
 
 type TemplateRouteContext = {
   params: { templateId: string };
 };
 
-export const GET = () =>
-  limitRoute(async (req: Request, { params }: TemplateRouteContext) => {
+export const GET = async (req: Request, { params }: TemplateRouteContext) =>
+  await limitRoute(async () => {
     const { templateId } = params;
+    // console.log(getHeaders(req), templateId);
 
     if (!templateId)
-      return NextResponse.json(
-        { message: "You need to send a valid template template id" },
-        { status: 404 }
-      );
+      return new NextResponse(null, {
+        headers: getHeaders(req),
+        status: 404,
+        statusText: "You need to send a valid template template id",
+      });
 
     const template = await getTemplateById(templateId as string);
 
     if (!template) {
-      return NextResponse.json(
-        { message: "Template not found" },
-        { status: 404 }
-      );
+      return new NextResponse(null, {
+        headers: getHeaders(req),
+        status: 404,
+        statusText: "Template not found",
+      });
     } else {
-      return NextResponse.json(template, { status: 200 });
+      return new NextResponse(JSON.stringify(template), {
+        headers: getHeaders(req),
+        status: 404,
+        statusText: "Template not found",
+      });
     }
   });
 
-export const DELETE = () =>
-  limitRoute(async (req: Request, { params }: TemplateRouteContext) => {
+export const DELETE = async (req: Request, { params }: TemplateRouteContext) =>
+  limitRoute(async () => {
     const { templateId } = params;
     if (!templateId)
-      return NextResponse.json(
-        { message: "You need to send a valid template template id" },
-        { status: 404 }
-      );
+      return new NextResponse(null, {
+        headers: getHeaders(req),
+        status: 404,
+        statusText: "You need to send a valid template template id",
+      });
 
     const deleteTemplate = await deleteTemplateById(templateId);
 
     if (!deleteTemplate) {
-      return NextResponse.json(
-        { message: "Template not found" },
-        { status: 404 }
-      );
+      return new NextResponse(null, {
+        headers: getHeaders(req),
+        status: 404,
+        statusText: "Template not found",
+      });
     } else {
-      return NextResponse.json(
-        { message: "Template deleted successfully" },
-        { status: 200 }
-      );
+      return new NextResponse(null, {
+        headers: getHeaders(req),
+        status: 201,
+        statusText: "Template deleted successfully",
+      });
     }
   });
 
-export const PUT = () =>
-  limitRoute(async (req: Request, { params }: TemplateRouteContext) => {
+export const PUT = async (req: Request, { params }: TemplateRouteContext) =>
+  limitRoute(async () => {
     const { templateId } = params;
     if (!templateId)
-      return NextResponse.json(
-        { message: "You need to send a valid template template id" },
-        { status: 404 }
-      );
+      return new NextResponse(null, {
+        headers: getHeaders(req),
+        status: 404,
+        statusText: "You need to send a valid template template id",
+      });
     const templateData = await req.json();
     const { elements, background } = templateData;
 
@@ -72,11 +84,16 @@ export const PUT = () =>
     });
 
     if (!updatedTemplate) {
-      return NextResponse.json(
-        { message: "Template not found" },
-        { status: 404 }
-      );
+      return new NextResponse(null, {
+        headers: getHeaders(req),
+        status: 404,
+        statusText: "Template not found",
+      });
     } else {
-      return NextResponse.json(updatedTemplate, { status: 200 });
+      return new NextResponse(JSON.stringify(updatedTemplate), {
+        headers: getHeaders(req),
+        status: 404,
+        statusText: "Template not found",
+      });
     }
   });

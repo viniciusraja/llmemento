@@ -1,28 +1,28 @@
-import { NextApiRequest } from "next";
 import getTemplates from "./_utils/getTemplates";
 import { NextResponse } from "next/server";
 import createTemplate from "./_utils/createTemplate";
-import limitNumberOfRequests from "../_utils/limitNumberOfRequests";
 import limitRoute from "../_utils/limitNumberOfRequests";
+import getHeaders from "../_utils/getHeaders";
 
-export const GET = () =>
+export const GET = (req: Request) =>
   limitRoute(async () => {
     const templates = await getTemplates();
 
-    return NextResponse.json(
-      { data: templates },
-      {
-        status: 200,
-      }
-    );
+    return new NextResponse(JSON.stringify(templates), {
+      headers: getHeaders(req),
+      status: 200,
+    });
   });
 
-export const POST = () =>
-  limitRoute(async (req: Request) => {
+export const POST = async (req: Request) =>
+  limitRoute(async () => {
     const templateData = await req.json();
     const { elements, background } = templateData;
 
     const createdTemplate = await createTemplate({ background, elements });
 
-    return NextResponse.json({ res: createdTemplate });
+    return new NextResponse(JSON.stringify(createdTemplate), {
+      headers: getHeaders(req),
+      status: 200,
+    });
   });
