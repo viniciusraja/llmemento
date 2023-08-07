@@ -3,8 +3,13 @@ import updateTemplateById from "../_utils/updateTemplateById";
 import deleteTemplateById from "../_utils/deleteTemplateById";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
-  const templateId = req.url.slice(req.url.lastIndexOf("/") + 1);
+type TemplateRouteContext = {
+  params: { templateId: string };
+};
+
+export async function GET(req: Request, { params }: TemplateRouteContext) {
+  const { templateId } = params;
+
   if (!templateId)
     return NextResponse.json(
       { message: "You need to send a valid template template id" },
@@ -23,8 +28,8 @@ export async function GET(req: Request) {
   }
 }
 
-export async function DELETE(req: Request) {
-  const templateId = req.url.slice(req.url.lastIndexOf("/") + 1);
+export async function DELETE(req: Request, { params }: TemplateRouteContext) {
+  const { templateId } = params;
   if (!templateId)
     return NextResponse.json(
       { message: "You need to send a valid template template id" },
@@ -46,9 +51,8 @@ export async function DELETE(req: Request) {
   }
 }
 
-export async function PUT(req: Request) {
-  const templateId = req.url.slice(req.url.lastIndexOf("/") + 1);
-
+export async function PUT(req: Request, { params }: TemplateRouteContext) {
+  const { templateId } = params;
   if (!templateId)
     return NextResponse.json(
       { message: "You need to send a valid template template id" },
