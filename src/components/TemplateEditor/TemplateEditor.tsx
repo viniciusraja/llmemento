@@ -23,16 +23,16 @@ const TemplateEditor = () => {
     (state) => state.setUploadedTemplateEditor
   );
 
+  const isUploadedTemplateEmpty =
+    Object.keys(uploadedTemplateEditor).length === 0;
+
   useEffect(() => {
-    if (!!templateId) {
+    if (!!templateId && isUploadedTemplateEmpty) {
       getTemplateById(templateId).then((template) => {
         if (template) setUploadedTemplateEditor(template);
       });
     }
-  }, []);
-
-  const isUploadedTemplateEmpty =
-    Object.keys(uploadedTemplateEditor).length === 0;
+  }, [templateId]);
 
   if (isUploadedTemplateEmpty) return <TemplateIsNotAvailable />;
 
