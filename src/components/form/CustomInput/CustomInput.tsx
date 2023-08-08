@@ -5,6 +5,7 @@ import {
   FormHelperText,
   Input,
 } from "@chakra-ui/react";
+import { ForwardRefRenderFunction, forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
 
 type CustomInputProps = {
@@ -16,24 +17,18 @@ type CustomInputProps = {
   iconColor?: string;
 } & ChakraInputProps;
 
-const CustomInput = ({
-  name,
-  label,
-  helperText,
-  info,
-  iconSize,
-  iconColor,
-  ...props
-}: CustomInputProps) => {
+const CustomInput: ForwardRefRenderFunction<
+  HTMLInputElement,
+  CustomInputProps
+> = (props, ref) => {
   const {
     register,
     watch,
     formState: { errors },
   } = useFormContext();
 
+  const { name, label, helperText, isDisabled } = props;
   const hasValue = watch(name);
-
-  const { isDisabled } = props;
 
   return (
     <FormControl
@@ -44,7 +39,7 @@ const CustomInput = ({
       }}
       isInvalid={!!errors.name}
     >
-      <Input {...register(name)} />
+      <Input {...register(name)} {...props} ref={ref} />
 
       <FormLabel
         aria-disabled={isDisabled}
@@ -69,4 +64,4 @@ const CustomInput = ({
     </FormControl>
   );
 };
-export default CustomInput;
+export default forwardRef(CustomInput);
