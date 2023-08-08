@@ -1,7 +1,5 @@
-import { Box } from "@chakra-ui/react";
 import CustomInput from "~/components/form/CustomInput";
 import useUpdateUploadedTemplateDataWithFormInput from "./hooks/useUpdateUploadedTemplateDataWithFormInput";
-import { useEffect } from "react";
 
 type TemplateEditorInputProps = {
   name: string;

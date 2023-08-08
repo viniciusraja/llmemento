@@ -1,3 +1,4 @@
+"use client";
 import ImageTemplateEditorElement from "./ImageTemplateEditorElement";
 import { TemplateElement } from "./templateTypes";
 import BackgroundTemplateEditorElement from "./BackgroundTemplateEditorElement";
@@ -5,16 +6,39 @@ import TextTemplateEditorElement from "./TextTemplateEditorElement";
 import { Box, HStack } from "@chakra-ui/react";
 import TemplateEditorForm from "./TemplateEditorForm";
 import useUploadedTemplateEditorStore from "../TemplateUploader/store/useUploadedTemplateEditorStore";
+import ManagerTemplateTools from "./ManagerTemplateTools";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import getTemplateById from "./utils/getTemplateById";
 
-const TemplateEditor = () => {
+type TemplateEditorProps = {
+  templateId: string;
+};
+
+const TemplateEditor = ({ templateId }: TemplateEditorProps) => {
   const uploadedTemplateEditor = useUploadedTemplateEditorStore(
     (state) => state.uploadedTemplateEditor
   );
+  const setUploadedTemplateEditor = useUploadedTemplateEditorStore(
+    (state) => state.setUploadedTemplateEditor
+  );
+
+  useEffect(() => {
+    if (!!templateId) {
+      getTemplateById(templateId).then((template) => {
+        setUploadedTemplateEditor(template);
+      });
+    }
+  }, []);
+
+  const isUploadedTemplateEmpty =
+    Object.keys(uploadedTemplateEditor).length === 0;
+
+  if (isUploadedTemplateEmpty) return null;
 
   const elementsToRender = Object.values(
     uploadedTemplateEditor?.elements || {}
   );
-
   return (
     <HStack w="100%" spacing="0" h="100vh" overflow="hidden">
       <Box w="50%">
@@ -44,6 +68,7 @@ const TemplateEditor = () => {
           })}
         </BackgroundTemplateEditorElement>
       </Box>
+      <ManagerTemplateTools />
     </HStack>
   );
 };

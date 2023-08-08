@@ -1,9 +1,10 @@
-import { Box, VStack } from "@chakra-ui/react";
+import { Button, VStack } from "@chakra-ui/react";
 import TemplateEditor from "../TemplateEditor";
 import useUploadedTemplateEditorStore from "../TemplateUploader/store/useUploadedTemplateEditorStore";
 import TemplateUploader from "../TemplateUploader";
+import hasManagerPrivilegeAccess from "~/utils/hasManagerPrivilegeAccess";
 
-const Home = () => {
+export default function Page() {
   const uploadedTemplateEditor = useUploadedTemplateEditorStore(
     (state) => state.uploadedTemplateEditor
   );
@@ -16,6 +17,4 @@ const Home = () => {
       {isUploadedTemplateEmpty ? <TemplateUploader /> : <TemplateEditor />}
     </VStack>
   );
-};
-
-export default Home;
+}
