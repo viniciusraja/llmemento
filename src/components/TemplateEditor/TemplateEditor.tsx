@@ -7,15 +7,15 @@ import { Box, HStack } from "@chakra-ui/react";
 import TemplateEditorForm from "./TemplateEditorForm";
 import useUploadedTemplateEditorStore from "../TemplateUploader/store/useUploadedTemplateEditorStore";
 import ManagerTemplateTools from "./ManagerTemplateTools";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import getTemplateById from "./utils/getTemplateById";
+import { useRouter } from "next/router";
+import TemplateIsNotAvailable from "../TemplateIsNotAvailable";
 
-type TemplateEditorProps = {
-  templateId: string;
-};
+const TemplateEditor = () => {
+  const router = useRouter();
+  const templateId = router?.query?.templateId as string;
 
-const TemplateEditor = ({ templateId }: TemplateEditorProps) => {
   const uploadedTemplateEditor = useUploadedTemplateEditorStore(
     (state) => state.uploadedTemplateEditor
   );
@@ -26,7 +26,7 @@ const TemplateEditor = ({ templateId }: TemplateEditorProps) => {
   useEffect(() => {
     if (!!templateId) {
       getTemplateById(templateId).then((template) => {
-        setUploadedTemplateEditor(template);
+        if (template) setUploadedTemplateEditor(template);
       });
     }
   }, []);
@@ -34,7 +34,7 @@ const TemplateEditor = ({ templateId }: TemplateEditorProps) => {
   const isUploadedTemplateEmpty =
     Object.keys(uploadedTemplateEditor).length === 0;
 
-  if (isUploadedTemplateEmpty) return null;
+  if (isUploadedTemplateEmpty) return <TemplateIsNotAvailable />;
 
   const elementsToRender = Object.values(
     uploadedTemplateEditor?.elements || {}
