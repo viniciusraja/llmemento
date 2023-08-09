@@ -1,6 +1,4 @@
-"use client";
 import ImageTemplateEditorElement from "./ImageTemplateEditorElement";
-import { TemplateElement } from "./templateTypes";
 import BackgroundTemplateEditorElement from "./BackgroundTemplateEditorElement";
 import TextTemplateEditorElement from "./TextTemplateEditorElement";
 import { Box, HStack } from "@chakra-ui/react";
@@ -11,6 +9,10 @@ import { useEffect } from "react";
 import getTemplateById from "./utils/getTemplateById";
 import { useRouter } from "next/router";
 import TemplateIsNotAvailable from "../TemplateIsNotAvailable";
+import TemplateDraggableItem from "./templateDragAndDrop/TemplateDraggableItem";
+import TemplateDropArea from "./templateDragAndDrop/TemplateDropArea";
+import { ITEM_TYPES } from "./templateDragAndDrop/TemplateDraggableItem/itemTypes";
+import TemplateDraggablePreview from "./templateDragAndDrop/TemplateDraggablePreview";
 
 const TemplateEditor = () => {
   const router = useRouter();
@@ -41,6 +43,7 @@ const TemplateEditor = () => {
   );
   return (
     <HStack w="100%" spacing="0" h="100vh" overflow="hidden">
+      <TemplateDraggablePreview />
       <Box w="50%">
         <TemplateEditorForm />
       </Box>
@@ -48,24 +51,29 @@ const TemplateEditor = () => {
         <BackgroundTemplateEditorElement
           backgroundConfig={uploadedTemplateEditor?.background as any}
         >
-          {elementsToRender?.map((elementToRender) => {
-            if (elementToRender.type === "text")
-              return (
-                <TextTemplateEditorElement
-                  key={elementToRender?.id}
-                  {...elementToRender}
-                />
-              );
+          <TemplateDropArea>
+            {elementsToRender?.map((elementToRender) => {
+              if (elementToRender.type === "text")
+                return (
+                  <TemplateDraggableItem
+                    key={elementToRender?.id}
+                    draggableItem={elementToRender}
+                    itemType={ITEM_TYPES.TEXT}
+                  >
+                    <TextTemplateEditorElement {...elementToRender} />
+                  </TemplateDraggableItem>
+                );
 
-            if (elementToRender.type === "image")
-              return (
-                <ImageTemplateEditorElement
-                  key={elementToRender?.id}
-                  {...elementToRender}
-                />
-              );
-            return null;
-          })}
+              if (elementToRender.type === "image")
+                return (
+                  <ImageTemplateEditorElement
+                    key={elementToRender?.id}
+                    {...elementToRender}
+                  />
+                );
+              return null;
+            })}
+          </TemplateDropArea>
         </BackgroundTemplateEditorElement>
       </Box>
       <ManagerTemplateTools />
