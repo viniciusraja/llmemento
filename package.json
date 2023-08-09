@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "yarn plop --plopfile generators/plopfile.js"
+    "generate": "yarn plop --plopfile generators/plopfile.js",
+    "server": "pscale connect esecriar main --port 3309"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.1.5",
