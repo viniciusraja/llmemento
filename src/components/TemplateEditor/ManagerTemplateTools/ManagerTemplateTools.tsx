@@ -9,7 +9,6 @@ const ManagerTemplateTools = () => {
   );
 
   if (!isManager) return null;
-  console.log("asjkdnasndonasdnon");
 
   const updateTemplate = (templateId: string) =>
     fetch(`/api/template/${templateId}/`, {

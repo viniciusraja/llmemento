@@ -1,4 +1,4 @@
-import create, { StateCreator } from "zustand";
+import { StateCreator, create } from "zustand";
 import { TemplateData } from "~/components/TemplateEditor/templateTypes";
 
 export interface UploadedTemplateEditorStore {

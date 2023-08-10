@@ -12,7 +12,6 @@ type TemplateRouteContext = {
 export const GET = async (req: Request, { params }: TemplateRouteContext) =>
   await limitRoute(async () => {
     const { templateId } = params;
-    // console.log(getHeaders(req), templateId);
 
     if (!templateId)
       return new NextResponse(null, {
