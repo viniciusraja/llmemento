@@ -7,12 +7,11 @@ type TextTemplateEditorElementProps = {} & TextElement;
 
 const TextTemplateEditorElement = ({
   content,
-  position,
   fontSize,
   fontFamily,
   size,
   textAlign,
-  color: { r, g, b, a } = { r: 0, g: 0, b: 0, a: 0, id: "" },
+  color: { r, g, b, a },
   fontStyle,
   fontWeight,
 }: TextTemplateEditorElementProps) => {
@@ -28,9 +27,6 @@ const TextTemplateEditorElement = ({
 
   return (
     <Text
-      // position="absolute"
-      // top={position?.y}
-      // left={position?.x}
       height={size?.height}
       width={size?.width}
       dangerouslySetInnerHTML={{ __html: safeHtml }}

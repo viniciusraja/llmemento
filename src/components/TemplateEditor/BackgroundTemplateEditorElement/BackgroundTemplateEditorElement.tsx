@@ -7,7 +7,6 @@ type BackgroundTemplateEditorElementProps = {
   children: ReactNode | null;
   backgroundConfig: BackgroundTemplateElement;
 };
-export const TEMPLATE_SCALE = 0.5;
 const BackgroundTemplateEditorElement = ({
   children,
   backgroundConfig,
@@ -19,7 +18,6 @@ const BackgroundTemplateEditorElement = ({
       bg={`rgba(${r},${g},${b},${a})`}
       overflow="hidden"
       position="relative"
-      // style={{ transform: `scale(${TEMPLATE_SCALE})` }}
       height={mmToPixels(pageConfig?.size?.height)}
       width={mmToPixels(pageConfig?.size?.width)}
     >

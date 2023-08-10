@@ -48,10 +48,10 @@ const TemplateEditor = () => {
         <TemplateEditorForm />
       </Box>
       <Box w="50%">
-        <BackgroundTemplateEditorElement
-          backgroundConfig={uploadedTemplateEditor?.background as any}
-        >
-          <TemplateDropArea>
+        <TemplateDropArea>
+          <BackgroundTemplateEditorElement
+            backgroundConfig={uploadedTemplateEditor?.background as any}
+          >
             {elementsToRender?.map((elementToRender) => {
               if (elementToRender.type === "text")
                 return (
@@ -73,10 +73,10 @@ const TemplateEditor = () => {
                 );
               return null;
             })}
-          </TemplateDropArea>
-        </BackgroundTemplateEditorElement>
+          </BackgroundTemplateEditorElement>
+        </TemplateDropArea>
       </Box>
-      <ManagerTemplateTools />
+      {/* <ManagerTemplateTools /> */}
     </HStack>
   );
 };

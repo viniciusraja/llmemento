@@ -1,4 +1,3 @@
-import { Box, Text } from "@chakra-ui/react";
 import { CSSProperties, memo } from "react";
 import { XYCoord, useDragLayer } from "react-dnd";
 import TextTemplateEditorElement from "../../TextTemplateEditorElement";
@@ -74,7 +73,7 @@ const TemplateDraggablePreview = () => {
   }
   return (
     <div style={layerStyles}>
-      <div style={getItemStyles(initialOffset, currentOffset, true)}>
+      <div style={getItemStyles(initialOffset, currentOffset, false)}>
         {renderItem()}
       </div>
     </div>

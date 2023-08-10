@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 import { ReactNode, memo } from "react";
 import { XYCoord, useDrop } from "react-dnd";
 import useUpdateTemplateField from "../../hooks/useUpdateTemplateField";
@@ -16,11 +16,9 @@ const TemplateDropArea = ({ children }: TemplateDropAreaProps) => {
       collect: (monitor) => ({
         isActive: monitor.canDrop() && monitor.isOver(),
       }),
-      drop: (
-        item: { elementId: string; initialPosition: { x: number; y: number } },
-        monitor
-      ) => {
-        const currentElementInitialPosition = item?.initialPosition;
+      drop: (item, monitor) => {
+        const { elementId, initialPosition } = item as any;
+        const currentElementInitialPosition = initialPosition;
 
         const dropElementOffsetPosition =
           (monitor.getDifferenceFromInitialOffset() as XYCoord) ||
@@ -33,10 +31,8 @@ const TemplateDropArea = ({ children }: TemplateDropAreaProps) => {
           currentElementInitialPosition?.y + dropElementOffsetPosition?.y
         );
 
-        // console.log({ xPosition, yPosition, item });
-
         handleUpdateTemplateFields({
-          elementId: item?.elementId,
+          elementId,
           data: { position: { x: xPosition, y: yPosition } },
         });
 
@@ -45,32 +41,35 @@ const TemplateDropArea = ({ children }: TemplateDropAreaProps) => {
     }),
     [handleUpdateTemplateFields]
   );
-  console.log(isActive, "asmdomasodmoamsdoasodm");
 
   return (
-    <Box ref={drop}>
+    <HStack
+      ref={drop}
+      alignItems="center"
+      justifyContent={"center"}
+      overflow="hidden"
+    >
       {children}
       {isActive && (
         <Box
           w="100%"
           position="absolute"
-          top="50%"
           borderBottom="2px"
           borderBottomStyle="dashed"
-          borderBottomColor="white"
+          borderBottomColor="red"
+          overflow="hidden"
         />
       )}
       {isActive && (
         <Box
           h="100%"
-          left="50%"
           position="absolute"
-          borderLeft="1px"
+          borderLeft="2px"
           borderLeftStyle="dashed"
-          borderLeftColor="white"
+          borderLeftColor="red"
         />
       )}
-    </Box>
+    </HStack>
   );
 };
 

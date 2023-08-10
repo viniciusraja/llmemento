@@ -26,7 +26,6 @@ function getStyles(
     height: isDragging ? 0 : "",
   };
 }
-
 const TemplateDraggableItem = ({
   children,
   itemType,
