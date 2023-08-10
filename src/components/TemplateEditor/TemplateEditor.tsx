@@ -4,7 +4,6 @@ import TextTemplateEditorElement from "./TextTemplateEditorElement";
 import { Box, HStack } from "@chakra-ui/react";
 import TemplateEditorForm from "./TemplateEditorForm";
 import useUploadedTemplateEditorStore from "../TemplateUploader/store/useUploadedTemplateEditorStore";
-import ManagerTemplateTools from "./ManagerTemplateTools";
 import { useEffect } from "react";
 import getTemplateById from "./utils/getTemplateById";
 import { useRouter } from "next/router";
@@ -13,6 +12,7 @@ import TemplateDraggableItem from "./templateDragAndDrop/TemplateDraggableItem";
 import TemplateDropArea from "./templateDragAndDrop/TemplateDropArea";
 import { ITEM_TYPES } from "./templateDragAndDrop/TemplateDraggableItem/itemTypes";
 import TemplateDraggablePreview from "./templateDragAndDrop/TemplateDraggablePreview";
+import changeTemplateScale from "./utils/changeTemplateScale";
 
 const TemplateEditor = () => {
   const router = useRouter();
@@ -26,12 +26,13 @@ const TemplateEditor = () => {
   );
 
   const isUploadedTemplateEmpty =
-    Object.keys(uploadedTemplateEditor).length === 0;
+    Object.keys(uploadedTemplateEditor || {}).length === 0;
 
   useEffect(() => {
     if (!!templateId && isUploadedTemplateEmpty) {
       getTemplateById(templateId).then((template) => {
-        if (template) setUploadedTemplateEditor(template);
+        //TODO only change template scale if it does not fit screen
+        if (template) setUploadedTemplateEditor(changeTemplateScale(template));
       });
     }
   }, [templateId]);
@@ -41,6 +42,7 @@ const TemplateEditor = () => {
   const elementsToRender = Object.values(
     uploadedTemplateEditor?.elements || {}
   );
+
   return (
     <HStack w="100%" spacing="0" h="100vh" overflow="hidden">
       <TemplateDraggablePreview />

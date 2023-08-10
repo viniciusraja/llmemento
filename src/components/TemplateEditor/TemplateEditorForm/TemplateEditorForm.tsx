@@ -1,5 +1,3 @@
-"use client";
-
 import { FormProvider, useForm } from "react-hook-form";
 import useTemplateFormEditorStore from "./store/useTemplateFormEditorStore";
 import { useEffect } from "react";
@@ -14,7 +12,7 @@ const TemplateEditorForm = () => {
   );
 
   const templateTextEditableFields = (
-    Object.values(uploadedTemplateEditor.elements) as TextElement[]
+    Object.values(uploadedTemplateEditor.elements || []) as TextElement[]
   )
     ?.filter(
       (uploadedTemplateElement) => uploadedTemplateElement?.type === "text"
@@ -49,9 +47,9 @@ const TemplateEditorForm = () => {
     <FormProvider {...templateEditorForm}>
       {templateTextEditableFields?.map((templateEditorTextElement) => (
         <TemplateEditorInput
+          key={templateEditorTextElement?.name}
           name={templateEditorTextElement?.name}
           label={templateEditorTextElement?.label}
-          value={templateEditorTextElement?.value}
         />
       ))}
     </FormProvider>
