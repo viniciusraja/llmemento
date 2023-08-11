@@ -55,6 +55,14 @@ const TemplateEditor = () => {
             backgroundConfig={uploadedTemplateEditor?.background as any}
           >
             {elementsToRender?.map((elementToRender) => {
+              if (elementToRender.type === "image")
+                return (
+                  <ImageTemplateEditorElement
+                    key={elementToRender?.id}
+                    {...elementToRender}
+                  />
+                );
+
               if (elementToRender.type === "text")
                 return (
                   <TemplateDraggableItem
@@ -66,13 +74,6 @@ const TemplateEditor = () => {
                   </TemplateDraggableItem>
                 );
 
-              if (elementToRender.type === "image")
-                return (
-                  <ImageTemplateEditorElement
-                    key={elementToRender?.id}
-                    {...elementToRender}
-                  />
-                );
               return null;
             })}
           </BackgroundTemplateEditorElement>

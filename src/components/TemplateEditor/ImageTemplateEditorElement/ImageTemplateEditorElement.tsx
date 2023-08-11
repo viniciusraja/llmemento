@@ -5,8 +5,7 @@ const ImageTemplateEditorElement = ({ metadata, position }: ImageElement) => {
   return (
     <Image
       src={metadata.imageApi?.url}
-      width={"100%"}
-      position="relative"
+      position="absolute"
       top={position?.y}
       left={position?.x}
     />
