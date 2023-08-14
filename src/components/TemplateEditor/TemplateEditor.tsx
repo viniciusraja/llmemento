@@ -45,7 +45,6 @@ const TemplateEditor = () => {
 
   return (
     <HStack w="100%" spacing="0" h="100vh" overflow="hidden">
-      <TemplateDraggablePreview />
       <Box w="50%">
         <TemplateEditorForm />
       </Box>
