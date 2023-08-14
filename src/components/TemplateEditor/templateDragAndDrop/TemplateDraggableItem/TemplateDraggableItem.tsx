@@ -24,6 +24,7 @@ function getStyles(
     // because IE will ignore our custom "empty image" drag preview.
     opacity: isDragging ? 0 : 1,
     height: isDragging ? 0 : "",
+    cursor: isDragging ? "grabbing" : "grab",
   };
 }
 const TemplateDraggableItem = ({
