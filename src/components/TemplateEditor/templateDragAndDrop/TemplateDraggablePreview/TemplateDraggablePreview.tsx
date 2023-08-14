@@ -2,6 +2,7 @@ import { CSSProperties, memo } from "react";
 import { XYCoord, useDragLayer } from "react-dnd";
 import TextTemplateEditorElement from "../../TextTemplateEditorElement";
 import { ITEM_TYPES } from "../TemplateDraggableItem/itemTypes";
+import DraggablePreviewCenter from "./DraggablePreviewCenter";
 
 const layerStyles: CSSProperties = {
   position: "fixed",
@@ -20,6 +21,24 @@ function snapToGrid(x: number, y: number): [number, number] {
   return [snappedX, snappedY];
 }
 
+const getXYCoords = (
+  initialOffset: XYCoord,
+  currentOffset: XYCoord,
+  isSnapToGrid?: boolean
+) => {
+  let { x, y } = currentOffset;
+
+  if (isSnapToGrid) {
+    x -= initialOffset.x;
+    y -= initialOffset.y;
+    [x, y] = snapToGrid(x, y);
+    x += initialOffset.x;
+    y += initialOffset.y;
+  }
+
+  return { x, y };
+};
+
 function getItemStyles(
   initialOffset: XYCoord | null,
   currentOffset: XYCoord | null,
@@ -31,15 +50,7 @@ function getItemStyles(
     };
   }
 
-  let { x, y } = currentOffset;
-
-  if (isSnapToGrid) {
-    x -= initialOffset.x;
-    y -= initialOffset.y;
-    [x, y] = snapToGrid(x, y);
-    x += initialOffset.x;
-    y += initialOffset.y;
-  }
+  const { x, y } = getXYCoords(initialOffset, currentOffset, isSnapToGrid);
 
   const transform = `translate(${x}px, ${y}px)`;
   return {
@@ -59,18 +70,30 @@ const TemplateDraggablePreview = () => {
     }));
 
   function renderItem() {
-    switch (itemType) {
-      case ITEM_TYPES.TEXT:
+    const getPreviewBasedOnDraggableType = () => {
+      if (itemType === ITEM_TYPES.TEXT)
         return <TextTemplateEditorElement {...item} />;
+    };
 
-      default:
-        return null;
-    }
+    const previewDraggable = getPreviewBasedOnDraggableType();
+
+    if (!!previewDraggable)
+      return (
+        <DraggablePreviewCenter
+          draggableItemHeight={item?.size?.height}
+          draggableItemWidth={item?.size?.width}
+        >
+          {previewDraggable}
+        </DraggablePreviewCenter>
+      );
+
+    return null;
   }
 
   if (!isDragging) {
     return null;
   }
+
   return (
     <div style={layerStyles}>
       <div style={getItemStyles(initialOffset, currentOffset, false)}>
