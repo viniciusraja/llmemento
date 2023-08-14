@@ -1,4 +1,5 @@
 import { StateCreator, create } from "zustand";
+import { persist } from "zustand/middleware";
 import { TemplateData } from "~/components/TemplateEditor/templateTypes";
 
 export interface UploadedTemplateEditorStore {
@@ -15,9 +16,14 @@ export const createUploadedTemplateEditorStore: StateCreator<
 });
 
 const useUploadedTemplateEditorStore = create<UploadedTemplateEditorStore>()(
-  (...a) => ({
-    ...createUploadedTemplateEditorStore(...a),
-  })
+  persist(
+    (...a) => ({
+      ...createUploadedTemplateEditorStore(...a),
+    }),
+    {
+      name: "template-uploaded-file",
+    }
+  )
 );
 
 export default useUploadedTemplateEditorStore;
