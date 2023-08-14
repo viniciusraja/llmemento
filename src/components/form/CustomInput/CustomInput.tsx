@@ -39,7 +39,7 @@ const CustomInput: ForwardRefRenderFunction<
       }}
       isInvalid={!!errors.name}
     >
-      <Input {...register(name)} {...props} ref={ref} />
+      <Input {...register(name)} {...props} />
 
       <FormLabel
         aria-disabled={isDisabled}
