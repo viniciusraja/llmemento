@@ -1,8 +1,9 @@
-import { CSSProperties, ReactNode, memo, useEffect } from "react";
+import { ReactNode, memo, useEffect } from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypesValues } from "./itemTypes";
 import { TemplateElement } from "../../templateTypes";
 import { getEmptyImage } from "react-dnd-html5-backend";
+import getDraggableItemStyles from "./utils/getDraggableItemStyles";
 
 type TemplateDraggableItemProps = {
   children: ReactNode;
@@ -10,23 +11,6 @@ type TemplateDraggableItemProps = {
   draggableItem: TemplateElement;
 };
 
-function getStyles(
-  left: number,
-  top: number,
-  isDragging: boolean
-): CSSProperties {
-  const transform = `translate3d(${left}px, ${top}px, 0)`;
-  return {
-    position: "absolute",
-    transform,
-    WebkitTransform: transform,
-    // IE fallback: hide the real node using CSS when dragging
-    // because IE will ignore our custom "empty image" drag preview.
-    opacity: isDragging ? 0 : 1,
-    height: isDragging ? 0 : "",
-    cursor: isDragging ? "grabbing" : "grab",
-  };
-}
 const TemplateDraggableItem = ({
   children,
   itemType,
@@ -54,7 +38,7 @@ const TemplateDraggableItem = ({
   return (
     <div
       ref={drag}
-      style={getStyles(
+      style={getDraggableItemStyles(
         draggableItem?.position?.x,
         draggableItem?.position?.y,
         isDragging
