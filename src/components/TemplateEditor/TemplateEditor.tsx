@@ -1,18 +1,13 @@
-import ImageTemplateEditorElement from "./ImageTemplateEditorElement";
-import BackgroundTemplateEditorElement from "./BackgroundTemplateEditorElement";
-import TextTemplateEditorElement from "./TextTemplateEditorElement";
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, Button, HStack } from "@chakra-ui/react";
 import TemplateEditorForm from "./TemplateEditorForm";
 import useUploadedTemplateEditorStore from "../TemplateUploader/store/useUploadedTemplateEditorStore";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import getTemplateById from "./utils/getTemplateById";
 import { useRouter } from "next/router";
 import TemplateIsNotAvailable from "../TemplateIsNotAvailable";
-import TemplateDraggableItem from "./templateDragAndDrop/TemplateDraggableItem";
-import TemplateDropArea from "./templateDragAndDrop/TemplateDropArea";
-import { ITEM_TYPES } from "./templateDragAndDrop/TemplateDraggableItem/itemTypes";
-import TemplateDraggablePreview from "./templateDragAndDrop/TemplateDraggablePreview";
 import changeTemplateScale from "./utils/changeTemplateScale";
+import handleDownloadTemplate from "./utils/handleDownloadTemplate";
+import TemplateViewer from "../TemplateViewer";
 
 const TemplateEditor = () => {
   const router = useRouter();
@@ -39,44 +34,26 @@ const TemplateEditor = () => {
 
   if (isUploadedTemplateEmpty) return <TemplateIsNotAvailable />;
 
-  const elementsToRender = Object.values(
-    uploadedTemplateEditor?.elements || {}
-  );
+  const printableComponent = useRef<HTMLDivElement>(null);
+
+  const { downloadTemplatePng, downloadTemplatePdf } =
+    handleDownloadTemplate(printableComponent);
 
   return (
     <HStack w="100%" spacing="0" h="100vh" overflow="hidden">
       <Box w="50%">
         <TemplateEditorForm />
+        <HStack justifyContent="center" my="5">
+          <Button onClick={async () => await downloadTemplatePdf()}>
+            Baixar PDF
+          </Button>
+          <Button onClick={async () => await downloadTemplatePng()}>
+            Baixar Imagem
+          </Button>
+        </HStack>
       </Box>
       <Box w="50%">
-        <TemplateDropArea>
-          <BackgroundTemplateEditorElement
-            backgroundConfig={uploadedTemplateEditor?.background as any}
-          >
-            {elementsToRender?.map((elementToRender) => {
-              if (elementToRender.type === "image")
-                return (
-                  <ImageTemplateEditorElement
-                    key={elementToRender?.id}
-                    {...elementToRender}
-                  />
-                );
-
-              if (elementToRender.type === "text")
-                return (
-                  <TemplateDraggableItem
-                    key={elementToRender?.id}
-                    draggableItem={elementToRender}
-                    itemType={ITEM_TYPES.TEXT}
-                  >
-                    <TextTemplateEditorElement {...elementToRender} />
-                  </TemplateDraggableItem>
-                );
-
-              return null;
-            })}
-          </BackgroundTemplateEditorElement>
-        </TemplateDropArea>
+        <TemplateViewer uploadedTemplateEditor={uploadedTemplateEditor} />
       </Box>
       {/* <ManagerTemplateTools /> */}
     </HStack>
