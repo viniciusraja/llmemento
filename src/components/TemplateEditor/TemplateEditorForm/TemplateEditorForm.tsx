@@ -5,6 +5,7 @@ import useUploadedTemplateEditorStore from "~/components/TemplateUploader/store/
 import { TextElement } from "../templateTypes";
 import TemplateEditorInput from "./TemplateEditorInput";
 import getSanitizedString from "./utils/getSanitizedString";
+import { VStack } from "@chakra-ui/react";
 
 const TemplateEditorForm = () => {
   const uploadedTemplateEditor = useUploadedTemplateEditorStore(
@@ -45,13 +46,15 @@ const TemplateEditorForm = () => {
 
   return (
     <FormProvider {...templateEditorForm}>
-      {templateTextEditableFields?.map((templateEditorTextElement) => (
-        <TemplateEditorInput
-          key={templateEditorTextElement?.name}
-          name={templateEditorTextElement?.name}
-          label={templateEditorTextElement?.label}
-        />
-      ))}
+      <VStack spacing="5" w="100%" alignItems="center">
+        {templateTextEditableFields?.map((templateEditorTextElement) => (
+          <TemplateEditorInput
+            key={templateEditorTextElement?.name}
+            name={templateEditorTextElement?.name}
+            label={templateEditorTextElement?.label}
+          />
+        ))}
+      </VStack>
     </FormProvider>
   );
 };
