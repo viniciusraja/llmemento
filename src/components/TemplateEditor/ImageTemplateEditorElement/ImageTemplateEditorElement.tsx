@@ -5,6 +5,7 @@ const ImageTemplateEditorElement = ({ metadata, position }: ImageElement) => {
   return (
     <Image
       src={metadata.imageApi?.url}
+      alt="Template Image"
       position="absolute"
       draggable="false"
       top={position?.y}
