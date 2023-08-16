@@ -1,7 +1,7 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { Ref, RefAttributes, RefObject } from "react";
-
+import { RefObject } from "react";
+const SCALE_FOR_TEMPLATE_DOWNLOAD = 4;
 const downloadImage = async (printableComponent: RefObject<HTMLDivElement>) => {
   if (!printableComponent?.current) return undefined;
 
@@ -9,6 +9,7 @@ const downloadImage = async (printableComponent: RefObject<HTMLDivElement>) => {
     logging: true,
     allowTaint: false,
     useCORS: true,
+    scale: SCALE_FOR_TEMPLATE_DOWNLOAD,
   });
 
   const imgData = htm2Canvas.toDataURL("image/png");
@@ -22,19 +23,25 @@ const downloadImage = async (printableComponent: RefObject<HTMLDivElement>) => {
 
 const downloadPDF = async (printableComponent: RefObject<HTMLDivElement>) => {
   if (!printableComponent?.current) return undefined;
+  const { clientHeight, clientWidth } = printableComponent?.current;
 
-  const htm2Canvas = await html2canvas(printableComponent?.current, {
-    logging: true,
-    allowTaint: false,
-    useCORS: true,
+  const pdfFileSize = [
+    SCALE_FOR_TEMPLATE_DOWNLOAD * Math.ceil(clientWidth),
+    SCALE_FOR_TEMPLATE_DOWNLOAD * Math.ceil(clientHeight) + 10,
+  ];
+  const pdf = new jsPDF("p", "px", pdfFileSize);
+  pdf.html(printableComponent?.current, {
+    callback: function (doc) {
+      doc.save("template.pdf");
+    },
+    x: 0,
+    y: 0,
+    html2canvas: {
+      scale: SCALE_FOR_TEMPLATE_DOWNLOAD,
+      allowTaint: false,
+      useCORS: true,
+    },
   });
-
-  const imgData = htm2Canvas.toDataURL("image/png");
-
-  if (!imgData) return undefined;
-  const pdf = new jsPDF();
-  pdf?.addImage(imgData, "PNG", 0, 0, undefined as any, undefined as any);
-  pdf?.save("download.pdf");
 };
 
 const handleDownloadTemplate = (

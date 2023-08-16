@@ -8,6 +8,8 @@ import TemplateIsNotAvailable from "../TemplateIsNotAvailable";
 import changeTemplateScale from "./utils/changeTemplateScale";
 import handleDownloadTemplate from "./utils/handleDownloadTemplate";
 import TemplateViewer from "../TemplateViewer";
+import DownloadTemplateButtons from "./DownloadTemplateButtons";
+import TemplateDropArea from "./templateDragAndDrop/TemplateDropArea";
 
 const TemplateEditor = () => {
   const router = useRouter();
@@ -34,26 +36,16 @@ const TemplateEditor = () => {
 
   if (isUploadedTemplateEmpty) return <TemplateIsNotAvailable />;
 
-  const printableComponent = useRef<HTMLDivElement>(null);
-
-  const { downloadTemplatePng, downloadTemplatePdf } =
-    handleDownloadTemplate(printableComponent);
-
   return (
     <HStack w="100%" spacing="0" h="100vh" overflow="hidden">
       <Box w="50%">
         <TemplateEditorForm />
-        <HStack justifyContent="center" my="5">
-          <Button onClick={async () => await downloadTemplatePdf()}>
-            Baixar PDF
-          </Button>
-          <Button onClick={async () => await downloadTemplatePng()}>
-            Baixar Imagem
-          </Button>
-        </HStack>
+        <DownloadTemplateButtons />
       </Box>
       <Box w="50%">
-        <TemplateViewer uploadedTemplateEditor={uploadedTemplateEditor} />
+        <TemplateDropArea>
+          <TemplateViewer uploadedTemplateEditor={uploadedTemplateEditor} />
+        </TemplateDropArea>
       </Box>
       {/* <ManagerTemplateTools /> */}
     </HStack>

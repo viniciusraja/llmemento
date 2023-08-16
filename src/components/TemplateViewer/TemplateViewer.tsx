@@ -1,4 +1,3 @@
-import TemplateDropArea from "../TemplateEditor/templateDragAndDrop/TemplateDropArea";
 import BackgroundTemplateEditorElement from "../TemplateEditor/BackgroundTemplateEditorElement";
 import ImageTemplateEditorElement from "../TemplateEditor/ImageTemplateEditorElement";
 import TemplateDraggableItem from "../TemplateEditor/templateDragAndDrop/TemplateDraggableItem";
@@ -6,12 +5,16 @@ import { ITEM_TYPES } from "../TemplateEditor/templateDragAndDrop/TemplateDragga
 import TextTemplateEditorElement from "../TemplateEditor/TextTemplateEditorElement";
 import TemplateIsNotAvailable from "../TemplateIsNotAvailable";
 import { TemplateData } from "../TemplateEditor/templateTypes";
+import { ForwardRefRenderFunction, forwardRef } from "react";
 
 type TemplateViewerProps = {
   uploadedTemplateEditor: TemplateData;
 };
 
-const TemplateViewer = ({ uploadedTemplateEditor }: TemplateViewerProps) => {
+const TemplateViewer: ForwardRefRenderFunction<
+  HTMLDivElement,
+  TemplateViewerProps
+> = ({ uploadedTemplateEditor }, ref) => {
   const elementsToRender = Object.values(
     uploadedTemplateEditor?.elements || {}
   );
@@ -22,35 +25,34 @@ const TemplateViewer = ({ uploadedTemplateEditor }: TemplateViewerProps) => {
   if (isUploadedTemplateEmpty) return <TemplateIsNotAvailable />;
 
   return (
-    <TemplateDropArea>
-      <BackgroundTemplateEditorElement
-        backgroundConfig={uploadedTemplateEditor?.background as any}
-      >
-        {elementsToRender?.map((elementToRender) => {
-          if (elementToRender.type === "image")
-            return (
-              <ImageTemplateEditorElement
-                key={elementToRender?.id}
-                {...elementToRender}
-              />
-            );
+    <BackgroundTemplateEditorElement
+      backgroundConfig={uploadedTemplateEditor?.background as any}
+      ref={ref}
+    >
+      {elementsToRender?.map((elementToRender) => {
+        if (elementToRender.type === "image")
+          return (
+            <ImageTemplateEditorElement
+              key={elementToRender?.id}
+              {...elementToRender}
+            />
+          );
 
-          if (elementToRender.type === "text")
-            return (
-              <TemplateDraggableItem
-                key={elementToRender?.id}
-                draggableItem={elementToRender}
-                itemType={ITEM_TYPES.TEXT}
-              >
-                <TextTemplateEditorElement {...elementToRender} />
-              </TemplateDraggableItem>
-            );
+        if (elementToRender.type === "text")
+          return (
+            <TemplateDraggableItem
+              key={elementToRender?.id}
+              draggableItem={elementToRender}
+              itemType={ITEM_TYPES.TEXT}
+            >
+              <TextTemplateEditorElement {...elementToRender} />
+            </TemplateDraggableItem>
+          );
 
-          return null;
-        })}
-      </BackgroundTemplateEditorElement>
-    </TemplateDropArea>
+        return null;
+      })}
+    </BackgroundTemplateEditorElement>
   );
 };
 
-export default TemplateViewer;
+export default forwardRef(TemplateViewer);
