@@ -1,12 +1,11 @@
-import { Box, Button, HStack } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 import TemplateEditorForm from "./TemplateEditorForm";
 import useUploadedTemplateEditorStore from "../TemplateUploader/store/useUploadedTemplateEditorStore";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import getTemplateById from "./utils/getTemplateById";
 import { useRouter } from "next/router";
 import TemplateIsNotAvailable from "../TemplateIsNotAvailable";
 import changeTemplateScale from "./utils/changeTemplateScale";
-import handleDownloadTemplate from "./utils/handleDownloadTemplate";
 import TemplateViewer from "../TemplateViewer";
 import DownloadTemplateButtons from "./DownloadTemplateButtons";
 import TemplateDropArea from "./templateDragAndDrop/TemplateDropArea";
@@ -47,7 +46,6 @@ const TemplateEditor = () => {
           <TemplateViewer uploadedTemplateEditor={uploadedTemplateEditor} />
         </TemplateDropArea>
       </Box>
-      {/* <ManagerTemplateTools /> */}
     </HStack>
   );
 };
