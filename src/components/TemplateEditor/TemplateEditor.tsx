@@ -1,6 +1,6 @@
 import { Box, HStack } from "@chakra-ui/react";
 import TemplateEditorForm from "./TemplateEditorForm";
-import useUploadedTemplateEditorStore from "../TemplateUploader/store/useUploadedTemplateEditorStore";
+import useUploadedTemplateEditorStore from "../TemplateCreator/TemplateUploader/store/useUploadedTemplateEditorStore";
 import { useEffect } from "react";
 import getTemplateById from "./utils/getTemplateById";
 import { useRouter } from "next/router";

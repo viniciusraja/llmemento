@@ -1,7 +1,7 @@
 import { VStack } from "@chakra-ui/react";
 import TemplateEditor from "../TemplateEditor";
-import useUploadedTemplateEditorStore from "../TemplateUploader/store/useUploadedTemplateEditorStore";
-import TemplateUploader from "../TemplateUploader";
+import useUploadedTemplateEditorStore from "../TemplateCreator/TemplateUploader/store/useUploadedTemplateEditorStore";
+import TemplateUploader from "../TemplateCreator/TemplateUploader";
 
 export default function Page() {
   const uploadedTemplateEditor = useUploadedTemplateEditorStore(

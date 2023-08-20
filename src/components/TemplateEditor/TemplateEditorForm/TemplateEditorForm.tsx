@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from "react-hook-form";
 import useTemplateFormEditorStore from "./store/useTemplateFormEditorStore";
 import { useEffect } from "react";
-import useUploadedTemplateEditorStore from "~/components/TemplateUploader/store/useUploadedTemplateEditorStore";
+import useUploadedTemplateEditorStore from "~/components/TemplateCreator/TemplateUploader/store/useUploadedTemplateEditorStore";
 import { TextElement } from "../templateTypes";
 import TemplateEditorInput from "./TemplateEditorInput";
 import getSanitizedString from "./utils/getSanitizedString";

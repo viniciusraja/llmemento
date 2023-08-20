@@ -1,4 +1,4 @@
-import useUploadedTemplateEditorStore from "~/components/TemplateUploader/store/useUploadedTemplateEditorStore";
+import useUploadedTemplateEditorStore from "~/components/TemplateCreator/TemplateUploader/store/useUploadedTemplateEditorStore";
 import { TemplateElement } from "../templateTypes";
 
 type UseUpdateTemplateFieldProps = {

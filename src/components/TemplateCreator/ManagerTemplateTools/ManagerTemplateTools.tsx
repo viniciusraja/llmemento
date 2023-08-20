@@ -1,5 +1,5 @@
 import { Box, Button } from "@chakra-ui/react";
-import useUploadedTemplateEditorStore from "~/components/TemplateUploader/store/useUploadedTemplateEditorStore";
+import useUploadedTemplateEditorStore from "~/components/TemplateCreator/TemplateUploader/store/useUploadedTemplateEditorStore";
 import hasManagerPrivilegeAccess from "~/utils/hasManagerPrivilegeAccess";
 
 const ManagerTemplateTools = () => {

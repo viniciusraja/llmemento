@@ -1,7 +1,7 @@
 import { Box, Button, HStack } from "@chakra-ui/react";
 import { useRef } from "react";
 import TemplateViewer from "~/components/TemplateViewer";
-import useUploadedTemplateEditorStore from "~/components/TemplateUploader/store/useUploadedTemplateEditorStore";
+import useUploadedTemplateEditorStore from "~/components/TemplateCreator/TemplateUploader/store/useUploadedTemplateEditorStore";
 import handleDownloadTemplate from "../utils/handleDownloadTemplate";
 
 const DownloadTemplateButtons = () => {
