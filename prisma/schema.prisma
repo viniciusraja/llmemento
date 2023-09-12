@@ -173,29 +173,29 @@ datasource db {
 //   elements     TemplateElement[]
 // }
 
-model Size {
-  id     String @id @default(uuid())
-  width  Int
-  height Int
-}
+model ImageElement {
+  id              String  @id @default(uuid())
+  rotation        Int?
+  keepProportions Boolean
+  opacity         Int
+  url             String  @db.LongText()
+  type            String
+  sizeWidth       Int
+  sizeHeight      Int
+  positionX       Int
+  positionY       Int
 
-// model Element{
-//     id String @id @default(uuid())
-//    size Size
-//   // position: Position;
-//   // rotation: number;
-//   // keepProportions: boolean;
-//   // opacity: number;
-//   // type: "image";
-//   // url?: string;
-//   // crop: { size: Size; position: Position };
-// }
+  element   Element @relation(fields: [elementId], references: [id])
+  elementId String  @unique
+}
 
 model Element {
   id String @id @default(uuid())
 
   Template   Template? @relation(fields: [templateId], references: [id])
   templateId String?   @unique
+
+  imageElement ImageElement?
 }
 
 model PageConfig {

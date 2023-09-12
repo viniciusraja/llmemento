@@ -1,6 +1,7 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Button, HStack } from "@chakra-ui/react";
 import useUploadedTemplateEditorStore from "~/components/TemplateCreator/TemplateUploader/store/useUploadedTemplateEditorStore";
 import hasManagerPrivilegeAccess from "~/utils/hasManagerPrivilegeAccess";
+import formatTemplateToSave from "./utils/formatTemplateToSave";
 
 const ManagerTemplateTools = () => {
   const isManager = hasManagerPrivilegeAccess();
@@ -24,7 +25,7 @@ const ManagerTemplateTools = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(uploadedTemplateEditor),
+      body: JSON.stringify(formatTemplateToSave(uploadedTemplateEditor)),
     });
 
   const handleSaveTemplate = () => {
@@ -33,10 +34,10 @@ const ManagerTemplateTools = () => {
   };
 
   return (
-    <Box bg="blue">
+    <HStack>
       <Button onClick={handleSaveTemplate}>SAVE TEMPLATE</Button>
       <Button>DELETE</Button>
-    </Box>
+    </HStack>
   );
 };
 

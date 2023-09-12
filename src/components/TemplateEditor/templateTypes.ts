@@ -9,8 +9,10 @@ interface Position {
 }
 export interface ImageElement {
   id: string;
-  size: Size;
-  position: Position;
+  sizeWidth: number;
+  sizeHeight: number;
+  positionX: number;
+  positionY: number;
   rotation: number;
   keepProportions: boolean;
   opacity: number;
@@ -49,15 +51,11 @@ export interface TextElement {
   outline: TextOutline;
   color: TextColor;
   textTransform: string;
-  link: string[];
+  link: string;
   content: string;
 }
 
 export type TemplateElement = ImageElement | TextElement;
-
-export interface Elements {
-  [key: string]: TemplateElement;
-}
 
 interface BackgroundColor {
   r: number;
@@ -81,5 +79,5 @@ export interface BackgroundTemplateElement extends BackgroundColor {
 export type TemplateData = {
   id: string;
   background: BackgroundTemplateElement;
-  elements: Elements;
+  elements: TemplateElement[];
 };

@@ -1,6 +1,6 @@
 import getTemplates from "./_utils/getTemplates";
 import { NextResponse } from "next/server";
-import createTemplate from "./_utils/createTemplate";
+import createTemplate from "./_utils/createTemplate/createTemplate";
 import limitRoute from "../_utils/limitNumberOfRequests";
 import getHeaders from "../_utils/getHeaders";
 
