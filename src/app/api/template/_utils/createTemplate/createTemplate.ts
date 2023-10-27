@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import { TemplateData } from "~/components/TemplateEditor/templateTypes";
-import formatTemplateImageElement from "./utils/formatTemplateImageElement";
 
 const prisma = new PrismaClient();
 
@@ -10,8 +9,6 @@ type CreateTemplate = {
 };
 
 const createTemplate = async ({ background, elements }: CreateTemplate) => {
-  const imageElement = elements?.find((element) => element?.type === "image");
-
   const createdTemplate = await prisma.template.create({
     data: {
       BackgroundTemplateElement: {
@@ -34,15 +31,7 @@ const createTemplate = async ({ background, elements }: CreateTemplate) => {
           },
         },
       },
-      elements: {
-        create: [
-          {
-            imageElement: {
-              create: formatTemplateImageElement(imageElement),
-            },
-          },
-        ],
-      },
+      elements: elements as any,
     },
   });
 

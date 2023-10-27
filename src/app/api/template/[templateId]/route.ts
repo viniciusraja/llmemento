@@ -31,8 +31,7 @@ export const GET = async (req: Request, { params }: TemplateRouteContext) =>
     } else {
       return new NextResponse(JSON.stringify(template), {
         headers: getHeaders(req),
-        status: 404,
-        statusText: "Template not found",
+        status: 201,
       });
     }
   });

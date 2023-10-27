@@ -9,6 +9,7 @@ import changeTemplateScale from "./utils/changeTemplateScale";
 import TemplateViewer from "../TemplateViewer";
 import DownloadTemplateButtons from "./DownloadTemplateButtons";
 import TemplateDropArea from "./templateDragAndDrop/TemplateDropArea";
+import TemplateDraggablePreview from "./templateDragAndDrop/TemplateDraggablePreview";
 
 const TemplateEditor = () => {
   const router = useRouter();

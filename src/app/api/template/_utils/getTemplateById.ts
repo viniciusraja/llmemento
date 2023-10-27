@@ -7,6 +7,14 @@ const getTemplateById = async (templateId?: string) => {
     where: {
       id: templateId,
     },
+    include: {
+      BackgroundTemplateElement: {
+        include: {
+          Color: true,
+          PageConfig: true,
+        },
+      },
+    },
   });
 
   return template;
