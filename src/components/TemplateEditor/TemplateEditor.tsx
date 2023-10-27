@@ -10,7 +10,7 @@ import TemplateViewer from "../TemplateViewer";
 import DownloadTemplateButtons from "./DownloadTemplateButtons";
 import TemplateDropArea from "./templateDragAndDrop/TemplateDropArea";
 import TemplateDraggablePreview from "./templateDragAndDrop/TemplateDraggablePreview";
-import formatUploadedTemplateIntoOurPreviewModel from "./utils/formatUploadedTemplateIntoOurPreviewmodel";
+import formatUploadedTemplate from "./utils/formatUploadedTemplate";
 
 const TemplateEditor = () => {
   const router = useRouter();
@@ -30,11 +30,10 @@ const TemplateEditor = () => {
     if (!!templateId && isUploadedTemplateEmpty) {
       getTemplateById(templateId).then((template) => {
         //TODO only change template scale if it does not fit screen
+
         if (template)
           setUploadedTemplateEditor(
-            changeTemplateScale(
-              formatUploadedTemplateIntoOurPreviewModel(template)
-            )
+            changeTemplateScale(formatUploadedTemplate(template))
           );
       });
     }

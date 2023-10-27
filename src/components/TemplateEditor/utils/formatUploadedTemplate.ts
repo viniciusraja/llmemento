@@ -1,8 +1,9 @@
-import { TemplateData } from "./../templateTypes";
+import { TemplateData } from "../templateTypes";
 
-const formatUploadedTemplateIntoOurPreviewModel = (template: any) => {
+const formatUploadedTemplate = (template: any) => {
   const { elements, BackgroundTemplateElement } = template;
-  return {
+
+  const formattedTemplatePayload = {
     background: {
       a: BackgroundTemplateElement?.Color?.a,
       r: BackgroundTemplateElement?.Color?.r,
@@ -10,8 +11,12 @@ const formatUploadedTemplateIntoOurPreviewModel = (template: any) => {
       b: BackgroundTemplateElement?.Color?.b,
       pageConfig: { size: BackgroundTemplateElement?.PageConfig },
     } as any,
-    elements,
+    elements: Object.fromEntries(
+      elements?.map((element: any) => [element?.id, element])
+    ),
   } as TemplateData;
+
+  return formattedTemplatePayload;
 };
 
-export default formatUploadedTemplateIntoOurPreviewModel;
+export default formatUploadedTemplate;
