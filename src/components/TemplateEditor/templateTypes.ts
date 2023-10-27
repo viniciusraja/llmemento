@@ -94,10 +94,12 @@ interface BackgroundColor {
 }
 
 type PageConfig = {
-  width: number;
-  height: number;
-  unit: "mm";
-  dpi: number;
+  size: {
+    width: number;
+    height: number;
+    unit: "mm";
+    dpi: number;
+  };
 };
 
 export interface BackgroundTemplateElement extends BackgroundColor {
