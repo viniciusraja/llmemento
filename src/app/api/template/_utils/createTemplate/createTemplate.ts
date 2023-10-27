@@ -23,10 +23,10 @@ const createTemplate = async ({ background, elements }: CreateTemplate) => {
           },
           PageConfig: {
             create: {
-              height: background.pageConfig.height,
-              width: background.pageConfig.width,
-              unit: background.pageConfig.unit,
-              dpi: background.pageConfig.dpi,
+              height: (background.pageConfig as any).height,
+              width: (background.pageConfig as any).width,
+              unit: (background.pageConfig as any).unit,
+              dpi: (background.pageConfig as any).dpi,
             },
           },
         },
