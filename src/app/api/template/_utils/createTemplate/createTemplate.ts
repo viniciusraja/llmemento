@@ -15,18 +15,19 @@ const createTemplate = async ({ background, elements }: CreateTemplate) => {
         create: {
           Color: {
             create: {
-              a: background.a,
-              b: background.b,
-              g: background.g,
-              r: background.r,
+              a: background?.a,
+              b: background?.b,
+              g: background?.g,
+              r: background?.r,
             },
           },
           PageConfig: {
             create: {
-              height: (background.pageConfig as any).height,
-              width: (background.pageConfig as any).width,
-              unit: (background.pageConfig as any).unit,
-              dpi: (background.pageConfig as any).dpi,
+              //A4 default size
+              width: 210,
+              height: 297,
+              unit: "mm",
+              dpi: 96,
             },
           },
         },

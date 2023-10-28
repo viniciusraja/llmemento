@@ -6,6 +6,7 @@ import TextTemplateEditorElement from "../TemplateEditor/TextTemplateEditorEleme
 import TemplateIsNotAvailable from "../TemplateIsNotAvailable";
 import { TemplateData } from "../TemplateEditor/templateTypes";
 import { ForwardRefRenderFunction, forwardRef } from "react";
+import LinkTemplateElement from "../TemplateEditor/LinkTemplateElement";
 
 type TemplateViewerProps = {
   uploadedTemplateEditor: TemplateData;
@@ -48,6 +49,9 @@ const TemplateViewer: ForwardRefRenderFunction<
               <TextTemplateEditorElement {...elementToRender} />
             </TemplateDraggableItem>
           );
+
+        if (elementToRender.type === "box")
+          return <LinkTemplateElement {...elementToRender} />;
 
         return null;
       })}

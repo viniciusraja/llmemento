@@ -23,6 +23,32 @@ interface Metadata {
   uploadId?: string;
   imageApi?: ImageApi;
 }
+export interface BoxElement {
+  id: string;
+  metadata: Metadata;
+  size: Size;
+  position: Position;
+  rotation: number;
+  flip: {
+    x: boolean;
+    y: boolean;
+  };
+  group: null | any;
+  locked: boolean;
+  keepProportions: boolean;
+  opacity: number;
+  virtualGroup: null | any;
+  tags: any[];
+  index: string;
+  type: "box";
+  url?: string;
+  preview?: string;
+  urlBackgroundRemoved: null | any;
+  filter: null | any;
+  crop: { size: Size; position: Position };
+  backgroundMode: string;
+  mask: null | any;
+}
 export interface ImageElement {
   id: string;
   metadata: Metadata;
@@ -84,7 +110,7 @@ export interface TextElement {
   content: string;
 }
 
-export type TemplateElement = ImageElement | TextElement;
+export type TemplateElement = ImageElement | TextElement | BoxElement;
 
 interface BackgroundColor {
   r: number;

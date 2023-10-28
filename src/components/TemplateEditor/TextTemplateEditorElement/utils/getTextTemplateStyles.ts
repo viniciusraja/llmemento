@@ -5,7 +5,7 @@ const getTextTemplateStyles = ({
   fontFamily,
   size,
   textAlign,
-  color: { r, g, b, a },
+  color: { r, g, b, a } = {} as any,
   fontStyle,
   fontWeight,
 }: TextElement) => {
