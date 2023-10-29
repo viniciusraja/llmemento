@@ -4,10 +4,18 @@ import useUpdateUploadedTemplateDataWithFormInput from "./hooks/useUpdateUploade
 type TemplateEditorInputProps = {
   name: string;
   label?: string;
+  isLinkElement?: boolean;
 };
 
-const TemplateEditorInput = ({ name, label }: TemplateEditorInputProps) => {
-  useUpdateUploadedTemplateDataWithFormInput(name);
+const TemplateEditorInput = ({
+  name,
+  label,
+  isLinkElement,
+}: TemplateEditorInputProps) => {
+  useUpdateUploadedTemplateDataWithFormInput(
+    name,
+    isLinkElement ? "url" : undefined
+  );
 
   return <CustomInput name={name} label={label} />;
 };

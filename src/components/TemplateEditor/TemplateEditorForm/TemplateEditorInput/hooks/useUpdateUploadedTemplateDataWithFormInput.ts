@@ -2,7 +2,10 @@ import useUpdateTemplateField from "~/components/TemplateEditor/hooks/useUpdateT
 import useTemplateFormEditorStore from "../../store/useTemplateFormEditorStore";
 import { useUpdateEffect } from "react-use";
 
-const useUpdateUploadedTemplateDataWithFormInput = (elementId: string) => {
+const useUpdateUploadedTemplateDataWithFormInput = (
+  elementId: string,
+  keyToUpdate = "content"
+) => {
   const templateEditorForm = useTemplateFormEditorStore(
     (state) => state.templateEditorForm
   ) as any;
@@ -11,7 +14,7 @@ const useUpdateUploadedTemplateDataWithFormInput = (elementId: string) => {
   useUpdateEffect(() => {
     handleUpdateTemplateFields({
       elementId,
-      data: { content: templateEditorForm[elementId] },
+      data: { [keyToUpdate]: templateEditorForm[elementId] },
     });
   }, [templateEditorForm[elementId]]);
 };
