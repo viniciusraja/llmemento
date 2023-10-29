@@ -22,20 +22,7 @@ const downloadImage = async (printableComponent: RefObject<HTMLDivElement>) => {
   link.click();
 };
 
-const downloadPDF = async (
-  printableComponent: RefObject<HTMLDivElement>,
-  templateData: TemplateData
-) => {
-  if (!printableComponent?.current) return undefined;
-  const { clientHeight, clientWidth } = printableComponent?.current;
-
-  const pdfFileSize = [
-    SCALE_FOR_TEMPLATE_DOWNLOAD * Math.ceil(clientWidth),
-    SCALE_FOR_TEMPLATE_DOWNLOAD * Math.ceil(clientHeight) + 10,
-  ];
-  const pdf = new jsPDF("p", "px", pdfFileSize);
-
-  //ADD LinkElements to PDF
+const addLinkElementsToPDF = (templateData: TemplateData, pdf: jsPDF) => {
   const linkELements = Object.values(
     templateData?.elements as BoxElement[]
   )?.filter((element) => element.type === "box");
@@ -49,6 +36,22 @@ const downloadPDF = async (
       { url: linkElement.url }
     )
   );
+};
+
+const downloadPDF = async (
+  printableComponent: RefObject<HTMLDivElement>,
+  templateData: TemplateData
+) => {
+  if (!printableComponent?.current) return undefined;
+  const { clientHeight, clientWidth } = printableComponent?.current;
+
+  const pdfFileSize = [
+    SCALE_FOR_TEMPLATE_DOWNLOAD * Math.ceil(clientWidth),
+    SCALE_FOR_TEMPLATE_DOWNLOAD * Math.ceil(clientHeight) + 10,
+  ];
+  const pdf = new jsPDF("p", "px", pdfFileSize);
+
+  addLinkElementsToPDF(templateData, pdf);
 
   pdf.html(printableComponent?.current, {
     callback: function (doc) {
