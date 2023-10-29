@@ -25,29 +25,10 @@ interface Metadata {
 }
 export interface BoxElement {
   id: string;
-  metadata: Metadata;
   size: Size;
   position: Position;
-  rotation: number;
-  flip: {
-    x: boolean;
-    y: boolean;
-  };
-  group: null | any;
-  locked: boolean;
-  keepProportions: boolean;
-  opacity: number;
-  virtualGroup: null | any;
-  tags: any[];
-  index: string;
   type: "box";
-  url?: string;
-  preview?: string;
-  urlBackgroundRemoved: null | any;
-  filter: null | any;
-  crop: { size: Size; position: Position };
-  backgroundMode: string;
-  mask: null | any;
+  url: string;
 }
 export interface ImageElement {
   id: string;

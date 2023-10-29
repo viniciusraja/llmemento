@@ -1,6 +1,7 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { RefObject } from "react";
+import { BoxElement, TemplateData } from "../templateTypes";
 const SCALE_FOR_TEMPLATE_DOWNLOAD = 4;
 const downloadImage = async (printableComponent: RefObject<HTMLDivElement>) => {
   if (!printableComponent?.current) return undefined;
@@ -21,7 +22,10 @@ const downloadImage = async (printableComponent: RefObject<HTMLDivElement>) => {
   link.click();
 };
 
-const downloadPDF = async (printableComponent: RefObject<HTMLDivElement>) => {
+const downloadPDF = async (
+  printableComponent: RefObject<HTMLDivElement>,
+  templateData: TemplateData
+) => {
   if (!printableComponent?.current) return undefined;
   const { clientHeight, clientWidth } = printableComponent?.current;
 
@@ -30,6 +34,22 @@ const downloadPDF = async (printableComponent: RefObject<HTMLDivElement>) => {
     SCALE_FOR_TEMPLATE_DOWNLOAD * Math.ceil(clientHeight) + 10,
   ];
   const pdf = new jsPDF("p", "px", pdfFileSize);
+
+  //ADD LinkElements to PDF
+  const linkELements = Object.values(
+    templateData?.elements as BoxElement[]
+  )?.filter((element) => element.type === "box");
+
+  linkELements?.forEach((linkElement) =>
+    pdf.link(
+      linkElement.position.x * SCALE_FOR_TEMPLATE_DOWNLOAD,
+      linkElement.position.y * SCALE_FOR_TEMPLATE_DOWNLOAD,
+      linkElement.size.width * SCALE_FOR_TEMPLATE_DOWNLOAD,
+      linkElement.size.height * SCALE_FOR_TEMPLATE_DOWNLOAD,
+      { url: linkElement.url }
+    )
+  );
+
   pdf.html(printableComponent?.current, {
     callback: function (doc) {
       doc.save("template.pdf");
@@ -48,7 +68,9 @@ const handleDownloadTemplate = (
   printableComponent: RefObject<HTMLDivElement>
 ) => {
   const downloadTemplatePng = () => downloadImage(printableComponent);
-  const downloadTemplatePdf = () => downloadPDF(printableComponent);
+  const downloadTemplatePdf = (templateData: TemplateData) =>
+    downloadPDF(printableComponent, templateData);
+
   return { downloadTemplatePng, downloadTemplatePdf };
 };
 

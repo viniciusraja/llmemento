@@ -23,7 +23,9 @@ const DownloadTemplateButtons = () => {
         />
       </Box>
 
-      <Button onClick={async () => await downloadTemplatePdf()}>
+      <Button
+        onClick={async () => await downloadTemplatePdf(uploadedTemplateEditor)}
+      >
         Baixar PDF
       </Button>
       <Button onClick={async () => await downloadTemplatePng()}>
