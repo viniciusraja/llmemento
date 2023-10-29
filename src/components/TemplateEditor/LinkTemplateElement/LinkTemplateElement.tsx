@@ -6,7 +6,18 @@ type LinkTemplateElementProps = {} & BoxElement;
 
 const LinkTemplateElement = (elementToRender: LinkTemplateElementProps) => {
   const linkTemplateElementStyles = getLinkTemplateStyles(elementToRender);
-  return <Box {...linkTemplateElementStyles} />;
+
+  const handleOpenLinkInPreview = () => {
+    window?.open(elementToRender?.url, "_blank");
+  };
+
+  return (
+    <Box
+      {...linkTemplateElementStyles}
+      cursor="pointer"
+      onClick={handleOpenLinkInPreview}
+    />
+  );
 };
 
 export default LinkTemplateElement;
