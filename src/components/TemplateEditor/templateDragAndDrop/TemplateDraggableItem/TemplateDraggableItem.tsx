@@ -1,4 +1,4 @@
-import { ReactNode, memo, useEffect } from "react";
+import { ReactNode, memo, useLayoutEffect } from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypesValues } from "./itemTypes";
 import { TemplateElement } from "../../templateTypes";
@@ -31,9 +31,8 @@ const TemplateDraggableItem = ({
     [draggableItem?.id, draggableItem?.position]
   );
 
-  useEffect(() => {
-    preview(getEmptyImage(), { captureDraggingState: true });
-  }, []);
+  const emptyDraggablePreview = getEmptyImage();
+  preview(emptyDraggablePreview, { captureDraggingState: true });
 
   return (
     <div

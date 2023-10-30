@@ -1,7 +1,7 @@
 import { TemplateData } from "../templateTypes";
 
 const formatUploadedTemplate = (template: any) => {
-  const { elements, BackgroundTemplateElement } = template;
+  const { elements, BackgroundTemplateElement, id } = template;
 
   const formattedTemplatePayload = {
     background: {
@@ -14,6 +14,7 @@ const formatUploadedTemplate = (template: any) => {
     elements: Object.fromEntries(
       elements?.map((element: any) => [element?.id, element])
     ),
+    id,
   } as TemplateData;
 
   return formattedTemplatePayload;

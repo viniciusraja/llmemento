@@ -11,7 +11,6 @@ export default function App({ Component, pageProps }: AppProps) {
     <DndProvider backend={HTML5Backend}>
       <ChakraProvider theme={theme}>
         <HydrateStore>
-          <TemplateDraggablePreview />
           <Component {...pageProps} />
         </HydrateStore>
       </ChakraProvider>
