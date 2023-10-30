@@ -49,7 +49,6 @@ const TemplateEditorForm = () => {
   const { watch } = templateEditorForm;
 
   const formEditorValues = watch();
-  console.log(formEditorValues);
   const setTemplateEditorForm = useTemplateFormEditorStore(
     (state) => state.setTemplateEditorForm
   );

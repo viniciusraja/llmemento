@@ -29,7 +29,12 @@ const TemplateEditor = () => {
     Object.keys(uploadedTemplateEditor || {}).length === 0;
 
   useEffect(() => {
-    if (!!templateId && isUploadedTemplateEmpty) {
+    const uploadedTemplateIsDifferentThanStoredOne =
+      templateId !== uploadedTemplateEditor?.id;
+    if (
+      !!templateId &&
+      (isUploadedTemplateEmpty || uploadedTemplateIsDifferentThanStoredOne)
+    ) {
       getTemplateById(templateId).then((template) => {
         //TODO only change template scale if it does not fit screen
 
