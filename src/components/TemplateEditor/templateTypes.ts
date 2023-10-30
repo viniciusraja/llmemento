@@ -78,6 +78,7 @@ export interface TextElement {
   opacity: number;
   type: "text";
   fontFamily: string;
+  fontUrl: string;
   fontWeight: number;
   fontStyle: string;
   fontSize: number;

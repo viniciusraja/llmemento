@@ -11,6 +11,8 @@ import DownloadTemplateButtons from "./DownloadTemplateButtons";
 import TemplateDropArea from "./templateDragAndDrop/TemplateDropArea";
 import TemplateDraggablePreview from "./templateDragAndDrop/TemplateDraggablePreview";
 import formatUploadedTemplate from "./utils/formatUploadedTemplate";
+import Head from "next/head";
+import FontLoader from "./FontLoader";
 
 const TemplateEditor = () => {
   const router = useRouter();
@@ -43,6 +45,7 @@ const TemplateEditor = () => {
 
   return (
     <HStack w="100%" spacing="0" h="100vh" overflow="hidden">
+      <FontLoader />
       <TemplateDraggablePreview />
       <Box w="50%">
         <TemplateEditorForm />
