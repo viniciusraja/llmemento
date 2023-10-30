@@ -1,7 +1,7 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { RefObject } from "react";
-import { BoxElement, TemplateData } from "../templateTypes";
+import { BoxElement, TemplateData, TextElement } from "../templateTypes";
 const SCALE_FOR_TEMPLATE_DOWNLOAD = 4;
 const downloadImage = async (printableComponent: RefObject<HTMLDivElement>) => {
   if (!printableComponent?.current) return undefined;
@@ -38,6 +38,24 @@ const addLinkElementsToPDF = (templateData: TemplateData, pdf: jsPDF) => {
   );
 };
 
+const getFontFaces = (templateData: TemplateData) => {
+  const elementsToRender = Object.values(templateData?.elements || {});
+
+  const textElements = elementsToRender?.filter(
+    (element) => element?.type === "text"
+  ) as TextElement[];
+
+  return textElements?.map((textElement) => ({
+    family: textElement?.fontFamily,
+    src: [
+      {
+        url: textElement?.fontUrl,
+        format: "truetype" as const,
+      },
+    ],
+  }));
+};
+
 const downloadPDF = async (
   printableComponent: RefObject<HTMLDivElement>,
   templateData: TemplateData
@@ -50,7 +68,9 @@ const downloadPDF = async (
     SCALE_FOR_TEMPLATE_DOWNLOAD * Math.ceil(clientHeight) + 10,
   ];
   const pdf = new jsPDF("p", "px", pdfFileSize);
+  const customPdfFonts = getFontFaces(templateData);
 
+  pdf.setFont("FraktionSans-Regular");
   addLinkElementsToPDF(templateData, pdf);
 
   pdf.html(printableComponent?.current, {
@@ -59,6 +79,7 @@ const downloadPDF = async (
     },
     x: 0,
     y: 0,
+    fontFaces: customPdfFonts,
     html2canvas: {
       scale: SCALE_FOR_TEMPLATE_DOWNLOAD,
       allowTaint: false,
