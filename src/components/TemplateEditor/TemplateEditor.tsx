@@ -49,10 +49,6 @@ const TemplateEditor = () => {
 
   if (isUploadedTemplateEmpty) return <TemplateIsNotAvailable />;
 
-  const {
-    pageConfig: { size },
-  } = uploadedTemplateEditor?.background;
-
   return (
     <HStack w="100%" spacing="0" h="100vh" overflow="hidden">
       <FontLoader />
@@ -63,8 +59,12 @@ const TemplateEditor = () => {
       </Box>
       <Box w="50%">
         <TemplateDropArea
-          width={mmToPixels(size?.width)}
-          height={mmToPixels(size?.height)}
+          width={mmToPixels(
+            uploadedTemplateEditor?.background?.pageConfig?.size?.width
+          )}
+          height={mmToPixels(
+            uploadedTemplateEditor?.background?.pageConfig?.size?.height
+          )}
         >
           <TemplateViewer uploadedTemplateEditor={uploadedTemplateEditor} />
         </TemplateDropArea>
