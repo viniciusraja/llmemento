@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "../../_config/db";
 
 const deleteTemplateById = async (templateId: string) => {
   const deleteTemplate = await prisma.template.delete({

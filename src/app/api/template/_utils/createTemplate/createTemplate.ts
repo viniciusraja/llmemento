@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "~/app/api/_config/db";
 import { TemplateData } from "~/components/TemplateEditor/templateTypes";
-
-const prisma = new PrismaClient();
 
 type CreateTemplate = {
   background: TemplateData["background"];

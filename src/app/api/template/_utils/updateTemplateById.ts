@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { TemplateData } from "~/components/TemplateEditor/templateTypes";
-
-const prisma = new PrismaClient();
+import prisma from "../../_config/db";
 
 type UpdateTemplateById = {
   templateId: string;

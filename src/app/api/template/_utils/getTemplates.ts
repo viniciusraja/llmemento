@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "../../_config/db";
 
 const getTemplates = async () => {
   const templates = await prisma.template.findMany();
