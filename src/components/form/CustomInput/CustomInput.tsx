@@ -4,6 +4,7 @@ import {
   FormLabel,
   FormHelperText,
   Input,
+  Box,
 } from "@chakra-ui/react";
 import { ForwardRefRenderFunction, forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
@@ -20,7 +21,7 @@ type CustomInputProps = {
 const CustomInput: ForwardRefRenderFunction<
   HTMLInputElement,
   CustomInputProps
-> = (props, ref) => {
+> = (props) => {
   const {
     register,
     watch,
@@ -31,37 +32,39 @@ const CustomInput: ForwardRefRenderFunction<
   const hasValue = watch(name);
 
   return (
-    <FormControl
-      _focusWithin={{
-        label: {
-          transform: "translate(0, 12px) scale(0.9)",
-        },
-      }}
-      isInvalid={!!errors.name}
-    >
-      <Input {...register(name)} {...props} ref={ref} />
-
-      <FormLabel
-        aria-disabled={isDisabled}
-        transform={
-          hasValue
-            ? "translate(0, 12px) scale(0.9)"
-            : "translate(0, 24px) scale(1)"
-        }
+    <Box>
+      <FormControl
+        _focusWithin={{
+          label: {
+            transform: "translate(0, 12px) scale(0.9)",
+          },
+        }}
+        isInvalid={!!errors.name}
       >
-        {label}
-      </FormLabel>
+        <Input {...register(name)} {...props} />
 
-      {!!helperText && (
-        <FormHelperText
-          color="gray.800"
-          _disabled={{ color: "gray.700" }}
-          pl={4}
+        <FormLabel
+          aria-disabled={isDisabled}
+          transform={
+            hasValue
+              ? "translate(0, 12px) scale(0.9)"
+              : "translate(0, 24px) scale(1)"
+          }
         >
-          {helperText}
-        </FormHelperText>
-      )}
-    </FormControl>
+          {label}
+        </FormLabel>
+
+        {!!helperText && (
+          <FormHelperText
+            color="gray.800"
+            _disabled={{ color: "gray.700" }}
+            pl={4}
+          >
+            {helperText}
+          </FormHelperText>
+        )}
+      </FormControl>
+    </Box>
   );
 };
 export default forwardRef(CustomInput);

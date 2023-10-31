@@ -1,31 +1,21 @@
 import { Box } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import { ForwardRefRenderFunction, ReactNode, forwardRef } from "react";
 import { BackgroundTemplateElement } from "../templateTypes";
-import mmToPixels from "./util/mmToPixels";
+import getTemplateBackgroundStyles from "./util/getTemplateBackgroundStyles";
 
 type BackgroundTemplateEditorElementProps = {
   children: ReactNode | null;
   backgroundConfig: BackgroundTemplateElement;
 };
-export const TEMPLATE_SCALE = 0.5;
-const BackgroundTemplateEditorElement = ({
-  children,
-  backgroundConfig,
-}: BackgroundTemplateEditorElementProps) => {
-  const { pageConfig, r, g, b, a } = backgroundConfig || {};
-
+const BackgroundTemplateEditorElement: ForwardRefRenderFunction<
+  HTMLDivElement,
+  BackgroundTemplateEditorElementProps
+> = ({ children, backgroundConfig }, ref) => {
   return (
-    <Box
-      bg={`rgba(${r},${g},${b},${a})`}
-      overflow="hidden"
-      position="relative"
-      // style={{ transform: `scale(${TEMPLATE_SCALE})` }}
-      height={mmToPixels(pageConfig?.size?.height)}
-      width={mmToPixels(pageConfig?.size?.width)}
-    >
+    <Box {...getTemplateBackgroundStyles(backgroundConfig || {})} ref={ref}>
       {children}
     </Box>
   );
 };
 
-export default BackgroundTemplateEditorElement;
+export default forwardRef(BackgroundTemplateEditorElement);

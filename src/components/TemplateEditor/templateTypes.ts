@@ -7,7 +7,6 @@ interface Position {
   x: number;
   y: number;
 }
-
 interface ImageApi {
   id: string;
   type: string;
@@ -24,7 +23,13 @@ interface Metadata {
   uploadId?: string;
   imageApi?: ImageApi;
 }
-
+export interface BoxElement {
+  id: string;
+  size: Size;
+  position: Position;
+  type: "box";
+  url: string;
+}
 export interface ImageElement {
   id: string;
   metadata: Metadata;
@@ -53,13 +58,11 @@ export interface ImageElement {
 }
 
 interface TextColor {
-  serializable: boolean;
   id: string;
   r: number;
   g: number;
   b: number;
   a: number;
-  validForVariant: boolean;
 }
 
 interface TextOutline {
@@ -69,23 +72,13 @@ interface TextOutline {
 
 export interface TextElement {
   id: string;
-  metadata: Metadata;
   size: Size;
   position: Position;
   rotation: number;
-  flip: {
-    x: boolean;
-    y: boolean;
-  };
-  group: null | any;
-  locked: boolean;
-  keepProportions: boolean;
   opacity: number;
-  virtualGroup: null | any;
-  tags: any[];
-  index: string;
   type: "text";
   fontFamily: string;
+  fontUrl: string;
   fontWeight: number;
   fontStyle: string;
   fontSize: number;
@@ -94,27 +87,12 @@ export interface TextElement {
   textAlign: string;
   outline: TextOutline;
   color: TextColor;
-  colors: TextColor[]; // Reuse the TextColor type
   textTransform: string;
-  scale: number;
-  textShadow: any[]; // Change 'any' to a proper type if possible
-  listStyle: string;
-  link: string[];
-  curvedProperties: {
-    arc: null | any; // Change 'any' to a proper type if possible
-    minArc: number;
-    transformCurve: number;
-  };
-  minBoxWidth: number;
-  minBoxHeight: number;
+  link: string;
   content: string;
 }
 
-export type TemplateElement = ImageElement | TextElement;
-
-export interface Elements {
-  [key: string]: TemplateElement;
-}
+export type TemplateElement = ImageElement | TextElement | BoxElement;
 
 interface BackgroundColor {
   r: number;
@@ -133,13 +111,12 @@ type PageConfig = {
 };
 
 export interface BackgroundTemplateElement extends BackgroundColor {
-  serializable: boolean;
   id: string;
-  validForVariant: boolean;
   pageConfig: PageConfig;
 }
 
 export type TemplateData = {
+  id: string;
   background: BackgroundTemplateElement;
-  elements: Elements;
+  elements: TemplateElement[];
 };

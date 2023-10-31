@@ -1,13 +1,19 @@
-import { Box } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 import { ReactNode, memo } from "react";
 import { XYCoord, useDrop } from "react-dnd";
 import useUpdateTemplateField from "../../hooks/useUpdateTemplateField";
 
 type TemplateDropAreaProps = {
   children: ReactNode;
+  width: number;
+  height: number;
 };
 
-const TemplateDropArea = ({ children }: TemplateDropAreaProps) => {
+const TemplateDropArea = ({
+  children,
+  width,
+  height,
+}: TemplateDropAreaProps) => {
   const { handleUpdateTemplateFields } = useUpdateTemplateField();
 
   const [{ isActive }, drop] = useDrop(
@@ -16,11 +22,9 @@ const TemplateDropArea = ({ children }: TemplateDropAreaProps) => {
       collect: (monitor) => ({
         isActive: monitor.canDrop() && monitor.isOver(),
       }),
-      drop: (
-        item: { elementId: string; initialPosition: { x: number; y: number } },
-        monitor
-      ) => {
-        const currentElementInitialPosition = item?.initialPosition;
+      drop: (item, monitor) => {
+        const { elementId, initialPosition } = item as any;
+        const currentElementInitialPosition = initialPosition;
 
         const dropElementOffsetPosition =
           (monitor.getDifferenceFromInitialOffset() as XYCoord) ||
@@ -33,10 +37,8 @@ const TemplateDropArea = ({ children }: TemplateDropAreaProps) => {
           currentElementInitialPosition?.y + dropElementOffsetPosition?.y
         );
 
-        // console.log({ xPosition, yPosition, item });
-
         handleUpdateTemplateFields({
-          elementId: item?.elementId,
+          elementId,
           data: { position: { x: xPosition, y: yPosition } },
         });
 
@@ -45,32 +47,35 @@ const TemplateDropArea = ({ children }: TemplateDropAreaProps) => {
     }),
     [handleUpdateTemplateFields]
   );
-  console.log(isActive, "asmdomasodmoamsdoasodm");
 
   return (
-    <Box ref={drop}>
+    <HStack
+      ref={drop}
+      w="100%"
+      h="100%"
+      alignItems="center"
+      justifyContent={"center"}
+    >
       {children}
       {isActive && (
         <Box
-          w="100%"
+          w={width}
           position="absolute"
-          top="50%"
           borderBottom="2px"
           borderBottomStyle="dashed"
-          borderBottomColor="white"
+          borderBottomColor="gray"
         />
       )}
       {isActive && (
         <Box
-          h="100%"
-          left="50%"
+          h={height}
           position="absolute"
-          borderLeft="1px"
+          borderLeft="2px"
           borderLeftStyle="dashed"
-          borderLeftColor="white"
+          borderLeftColor="gray"
         />
       )}
-    </Box>
+    </HStack>
   );
 };
 

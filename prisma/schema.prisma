@@ -11,8 +11,51 @@ datasource db {
   relationMode = "prisma"
 }
 
+
+model PageConfig {
+  id     String @id @default(uuid())
+  width  Int
+  height Int
+  unit   String
+  dpi    Int
+
+  backgroundPageInfo   BackgroundTemplateElement @relation(fields: [backgroundPageInfoId], references: [id])
+  backgroundPageInfoId String                    @unique
+}
+
+model Color {
+  id String @id @default(uuid())
+  r  Int
+  g  Int
+  b  Int
+  a  Int
+
+  backgroundColor BackgroundTemplateElement? @relation(fields: [bgColorId], references: [id])
+  bgColorId       String?                    @unique
+}
+
+model BackgroundTemplateElement {
+  id String @id @default(uuid())
+
+  template   Template @relation(fields: [templateId], references: [id])
+  templateId String   @unique
+
+  Color      Color?
+  PageConfig PageConfig?
+}
+
 model Template {
-  id         String @id @default(uuid())
-  background Json
-  elements   Json
+  id String @id @default(uuid())
+
+  templateGroup   TemplateGroup? @relation(fields: [templateGroupId], references: [id])
+  templateGroupId String?        @unique
+
+  BackgroundTemplateElement BackgroundTemplateElement?
+  elements                  Json
+}
+
+model TemplateGroup {
+  id String @id @default(uuid())
+
+  Templates Template[]
 }
