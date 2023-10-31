@@ -12,13 +12,18 @@ const FontLoader = () => {
   );
 
   const textElements = elementsToRender?.filter(
-    (element) => element?.type === "text"
+    (element) => element?.type === "text" && !!element?.fontUrl
   ) as TextElement[];
 
   return (
     <Head>
       {textElements?.map((textElement) => (
-        <link rel="stylesheet" type="font/woff2" href={textElement?.fontUrl} />
+        <link
+          key={textElement?.fontUrl}
+          rel="stylesheet"
+          type="font/woff2"
+          href={textElement?.fontUrl}
+        />
       ))}
     </Head>
   );
