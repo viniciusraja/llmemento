@@ -27,7 +27,7 @@ const changeTemplateScale = (
   const scaleTextOrImageElement = (
     elements: Map<keyof TemplateElement, TemplateElement[keyof TemplateElement]>
   ) => {
-    const scaledElements = elements?.map((element) =>
+    const scaledElements = elements?.map((element: any) =>
       element
         .updateIn(["size"], (size: any) => scaleSizeObject(size.toJS()))
         .updateIn(["position"], (position: any) =>

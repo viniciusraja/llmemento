@@ -22,7 +22,7 @@ const useUpdateTemplateField = () => {
       elements: {
         ...uploadedTemplateEditor.elements,
         [elementId]: {
-          ...uploadedTemplateEditor.elements[elementId],
+          ...uploadedTemplateEditor.elements[elementId as any],
           ...data,
         },
       },

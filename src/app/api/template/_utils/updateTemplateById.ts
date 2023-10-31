@@ -1,11 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { TemplateData } from "~/components/TemplateEditor/templateTypes";
 
 const prisma = new PrismaClient();
 
 type UpdateTemplateById = {
   templateId: string;
-  background: {};
-  elements: {};
+  background: TemplateData["background"];
+  elements: TemplateData["elements"];
 };
 
 const updateTemplateById = async ({
@@ -18,8 +19,28 @@ const updateTemplateById = async ({
       id: templateId,
     },
     data: {
-      background,
-      elements,
+      BackgroundTemplateElement: {
+        create: {
+          Color: {
+            create: {
+              a: background?.a,
+              b: background?.b,
+              g: background?.g,
+              r: background?.r,
+            },
+          },
+          PageConfig: {
+            create: {
+              //A4 default size
+              width: 210,
+              height: 297,
+              unit: "mm",
+              dpi: 96,
+            },
+          },
+        },
+      },
+      elements: elements as any,
     },
   });
 
