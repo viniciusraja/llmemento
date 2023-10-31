@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "generate": "yarn plop --plopfile generators/plopfile.js",
     "server": "pscale connect esecriar main --port 3309",
+    "postinstall": "prisma generate",
     "test": "jest"
   },
   "dependencies": {
