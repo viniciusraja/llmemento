@@ -5,9 +5,15 @@ import useUpdateTemplateField from "../../hooks/useUpdateTemplateField";
 
 type TemplateDropAreaProps = {
   children: ReactNode;
+  width: number;
+  height: number;
 };
 
-const TemplateDropArea = ({ children }: TemplateDropAreaProps) => {
+const TemplateDropArea = ({
+  children,
+  width,
+  height,
+}: TemplateDropAreaProps) => {
   const { handleUpdateTemplateFields } = useUpdateTemplateField();
 
   const [{ isActive }, drop] = useDrop(
@@ -45,28 +51,28 @@ const TemplateDropArea = ({ children }: TemplateDropAreaProps) => {
   return (
     <HStack
       ref={drop}
+      w="100%"
+      h="100%"
       alignItems="center"
       justifyContent={"center"}
-      overflow="hidden"
     >
       {children}
       {isActive && (
         <Box
-          w="100%"
+          w={width}
           position="absolute"
           borderBottom="2px"
           borderBottomStyle="dashed"
-          borderBottomColor="red"
-          overflow="hidden"
+          borderBottomColor="gray"
         />
       )}
       {isActive && (
         <Box
-          h="100%"
+          h={height}
           position="absolute"
           borderLeft="2px"
           borderLeftStyle="dashed"
-          borderLeftColor="red"
+          borderLeftColor="gray"
         />
       )}
     </HStack>

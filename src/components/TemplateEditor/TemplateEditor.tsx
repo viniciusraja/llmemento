@@ -13,6 +13,7 @@ import TemplateDraggablePreview from "./templateDragAndDrop/TemplateDraggablePre
 import formatUploadedTemplate from "./utils/formatUploadedTemplate";
 import Head from "next/head";
 import FontLoader from "./FontLoader";
+import mmToPixels from "./BackgroundTemplateEditorElement/util/mmToPixels";
 
 const TemplateEditor = () => {
   const router = useRouter();
@@ -48,6 +49,10 @@ const TemplateEditor = () => {
 
   if (isUploadedTemplateEmpty) return <TemplateIsNotAvailable />;
 
+  const {
+    pageConfig: { size },
+  } = uploadedTemplateEditor?.background;
+
   return (
     <HStack w="100%" spacing="0" h="100vh" overflow="hidden">
       <FontLoader />
@@ -57,7 +62,10 @@ const TemplateEditor = () => {
         <DownloadTemplateButtons />
       </Box>
       <Box w="50%">
-        <TemplateDropArea>
+        <TemplateDropArea
+          width={mmToPixels(size?.width)}
+          height={mmToPixels(size?.height)}
+        >
           <TemplateViewer uploadedTemplateEditor={uploadedTemplateEditor} />
         </TemplateDropArea>
       </Box>
