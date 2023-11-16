@@ -1,11 +1,11 @@
+import { ThemeComponents } from "@chakra-ui/react";
 import colors, { StyleOptions } from "../colors";
 
-const Button = {
+const Button: ThemeComponents["button"] = {
   variants: {
     solid: () => ({
       bg: colors.primary,
       color: "white",
-
       _disabled: {
         color: colors.primary,
         bg: colors.gray["700"],
@@ -20,64 +20,12 @@ const Button = {
         },
       },
     }),
-    outline: ({ colorMode }: StyleOptions) => ({
-      bg: "transparent",
-      color: colors.primary,
-      border: "2px solid",
-      borderColor: colors.primary,
-
-      _disabled: {
-        color: colors.primary,
-        borderColor: colors.gray["700"],
-      },
-
-      _hover: {
-        bg: colors.primary,
-
-        _disabled: {
-          color: colors.primary,
-          borderColor: colors.gray["700"],
-        },
-      },
-
-      _focus: {
-        bg: colors.primary,
-
-        _hover: {
-          bg: colors.primary,
-        },
-      },
-    }),
-    text: ({ colorMode }: StyleOptions) => ({
-      bg: "transparent",
-      color: colors.primary,
-
-      _disabled: {
-        color: colors.primary,
-      },
-
-      _hover: {
-        bg: colors.primary,
-
-        _disabled: {
-          color: colors.primary,
-        },
-      },
-
-      _focus: {
-        bg: colors.primary,
-
-        _hover: {
-          bg: colors.primary,
-        },
-      },
-    }),
   },
   baseStyle: {
     color: "white",
     fontWeight: "bold",
-    textTransform: "uppercase",
-    rounded: "0",
+    rounded: "10px",
+    textTransform: "title",
     overflow: "hidden",
   },
   defaultProps: {
