@@ -24,12 +24,6 @@ const TemplateViewer: ForwardRefRenderFunction<
     Object.keys(uploadedTemplateEditor || {}).length === 0;
 
   if (isUploadedTemplateEmpty) return <TemplateIsNotAvailable />;
-  console.log(
-    process.env,
-    process.env.NEXT_PUBLIC_PERMISSION_LEVEL,
-    process.env.DATABASE_URL,
-    " env vars"
-  );
 
   return (
     <BackgroundTemplateEditorElement
