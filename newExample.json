@@ -1,0 +1,350 @@
+{
+    "id": "b1f6bbb5-b25d-47dd-adc1-a77125d0cce5",
+    "sourceId": "",
+    "name": "New page",
+    "background": {
+        "serializable": true,
+        "id": "color-aa09cee6-1563-4d92-a4d7-a0c61b543590",
+        "r": 229,
+        "g": 115,
+        "b": 115,
+        "a": 1,
+        "validForVariant": true
+    },
+    "backgroundImageId": "",
+    "preview": "https:\/\/content.wepik.com\/statics\/90988240\/conversions\/preview-page0-thumb.jpg?v=2023-07-17 09:52:31",
+    "elements": {
+        "1a538a20-59de-43fc-a1e5-a2f03e6d69d6": {
+            "id": "1a538a20-59de-43fc-a1e5-a2f03e6d69d6",
+            "metadata": {
+                "uploadId": "99cc283d-52ba-4095-beee-662574f3a0b2",
+                "imageApi": {
+                    "id": "99cc283d-52ba-4095-beee-662574f3a0b2",
+                    "type": "image",
+                    "url": "https://storage.googleapis.com/e_se_criar_template_images/template_01/vecteezy_watercolor-eucalyptus-leaf-frame_10978382_470.png",
+                    "preview": "https:\/\/wepik.com\/api\/image\/local\/4426806\/99cc283d-52ba-4095-beee-662574f3a0b2?expires=1691121600&thumb=1&transparent=0&signature=64acf80dfe254c45dea22069dd008cca1ca86ca9f70fbfdd1d868c41f760a3c6",
+                    "backgroundRemoved": null,
+                    "origin": "uploads",
+                    "trackedJob": null,
+                    "data": [],
+                    "links": []
+                }
+            },
+            "size": {
+                "width": 795,
+                "height": 533
+            },
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "rotation": 0,
+            "flip": {
+                "x": false,
+                "y": false
+            },
+            "group": null,
+            "locked": false,
+            "keepProportions": true,
+            "opacity": 1,
+            "virtualGroup": null,
+            "tags": [],
+            "index": "a0",
+            "parentId": "",
+            "type": "image",
+            "url": "https://storage.googleapis.com/e_se_criar_template_images/template_01/vecteezy_watercolor-eucalyptus-leaf-frame_10978382_470.png",
+            "preview": "https:\/\/wepik.com\/api\/image\/local\/4426806\/99cc283d-52ba-4095-beee-662574f3a0b2?expires=1698552000&thumb=1&transparent=0&signature=62eb17979ded973093be995da8e793bc1773da00f59016eb7b6cf70fd51dd677",
+            "urlBackgroundRemoved": null,
+            "filter": null,
+            "crop": {
+                "size": {
+                    "width": 816,
+                    "height": 544.274
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                }
+            },
+            "backgroundMode": "original",
+            "mask": null,
+            "subElements": []
+        },
+        "da9be2a6-1ddd-47fd-858f-ade83c841dca": {
+            "id": "da9be2a6-1ddd-47fd-858f-ade83c841dca",
+            "metadata": {
+                "fixPosYOnAdded": true,
+                "fixPaddingScale": true
+            },
+            "size": {
+                "width": 397,
+                "height": 65.6991637688359
+            },
+            "position": {
+                "x": 196.59999999999977,
+                "y": 46.554
+            },
+            "rotation": 0,
+            "flip": {
+                "x": false,
+                "y": false
+            },
+            "group": null,
+            "locked": false,
+            "keepProportions": true,
+            "opacity": 1,
+            "virtualGroup": null,
+            "tags": [],
+            "index": "a1",
+            "parentId": "",
+            "type": "text",
+            "content": "My header text<br>",
+            "fontFamily": "FraktionSans-Regular",
+            "fontUrl": "https://storage.googleapis.com/e_se_criar_template_images/template_01/Fraktion%20Sans%20Regular.ttf",
+            "fontWeight": 900,
+            "fontStyle": "normal",
+            "fontSize": 38.112,
+            "lineHeight": 1.2,
+            "letterSpacing": 0,
+            "textAlign": "center",
+            "outline": {
+                "color": {
+                    "serializable": true,
+                    "id": "color-8f4b6e5b-d027-47d3-a17b-056345f5bdd9",
+                    "r": 134,
+                    "g": 159,
+                    "b": 178,
+                    "a": 1,
+                    "validForVariant": true
+                },
+                "width": 0,
+                "unit": "px"
+            },
+            "colors": [
+                {
+                    "serializable": true,
+                    "id": "color-32b23762-be83-4294-838b-a50c22ed9eff",
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "validForVariant": true
+                }
+            ],
+            "textTransform": "",
+            "scale": 1,
+            "textShadow": [],
+            "listStyle": "",
+            "curvedProperties": {
+                "arc": null,
+                "minArc": 0,
+                "transformCurve": 0
+            },
+            "subElements": []
+        },
+        "8b4f6d8f-9988-41ea-a52c-9937515d681e": {
+            "id": "8b4f6d8f-9988-41ea-a52c-9937515d681e",
+            "metadata": {
+                "fixPosYOnAdded": true,
+                "fixPaddingScale": true
+            },
+            "size": {
+                "height": 48.27387370638904,
+                "width": 397
+            },
+            "position": {
+                "x": 197.58973167255385,
+                "y": 363.30674846625766
+            },
+            "rotation": 0,
+            "flip": {
+                "x": false,
+                "y": false
+            },
+            "group": null,
+            "locked": false,
+            "keepProportions": true,
+            "opacity": 1,
+            "virtualGroup": null,
+            "tags": [],
+            "index": "a2",
+            "parentId": "",
+            "type": "text",
+            "fontFamily": "FraktionSans-Regular",
+            "fontUrl": "https://storage.googleapis.com/e_se_criar_template_images/template_01/Fraktion%20Sans%20Regular.ttf",
+            "content": "<div>My sub header<\/div>",
+            "fontWeight": 900,
+            "fontStyle": "normal",
+            "fontSize": 28.584000000000003,
+            "lineHeight": 1.2,
+            "letterSpacing": 0,
+            "textAlign": "center",
+            "outline": {
+                "color": {
+                    "serializable": true,
+                    "id": "color-1b1cc2e3-1c4b-4db7-9169-55ff2cb4e611",
+                    "r": 134,
+                    "g": 159,
+                    "b": 178,
+                    "a": 1,
+                    "validForVariant": true
+                },
+                "width": 0,
+                "unit": "px"
+            },
+            "colors": [
+                {
+                    "serializable": true,
+                    "id": "color-dd31f230-71ea-4443-82df-42a8ec370157",
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "validForVariant": true
+                }
+            ],
+            "textTransform": "",
+            "scale": 1,
+            "textShadow": [],
+            "listStyle": "",
+            "curvedProperties": {
+                "arc": null,
+                "minArc": 0,
+                "transformCurve": 0
+            },
+            "subElements": []
+        },
+        "211e67ab-3eb4-47ac-a4e7-5aeb24d05851": {
+            "id": "211e67ab-3eb4-47ac-a4e7-5aeb24d05851",
+            "metadata": {
+                "fixPosYOnAdded": true,
+                "fixPaddingScale": true,
+                "hasFailedFont": true
+            },
+            "size": {
+                "width": 397,
+                "height": 65.72
+            },
+            "position": {
+                "x": 20.599999999999994,
+                "y": 203.44998779296876
+            },
+            "rotation": 0,
+            "flip": {
+                "x": false,
+                "y": false
+            },
+            "group": null,
+            "locked": false,
+            "keepProportions": true,
+            "opacity": 1,
+            "virtualGroup": null,
+            "tags": [],
+            "index": "a3",
+            "parentId": "",
+            "type": "text",
+            "fontFamily": "FraktionSans-Regular",
+            "fontUrl": "https://storage.googleapis.com/e_se_criar_template_images/template_01/Fraktion%20Sans%20Regular.ttf",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "fontSize": 38.112,
+            "lineHeight": 1.2,
+            "letterSpacing": 0,
+            "textAlign": "center",
+            "outline": {
+                "color": {
+                    "serializable": true,
+                    "id": "color-d185d358-d012-4a09-9318-469979282431",
+                    "r": 134,
+                    "g": 159,
+                    "b": 178,
+                    "a": 1,
+                    "validForVariant": true
+                },
+                "width": 0,
+                "unit": "px"
+            },
+            "colors": [
+                {
+                    "serializable": true,
+                    "id": "color-32b23762-be83-4294-838b-a50c22ed9eff",
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "validForVariant": true
+                }
+            ],
+            "textTransform": "",
+            "scale": 1,
+            "textShadow": [],
+            "listStyle": "",
+            "curvedProperties": {
+                "arc": null,
+                "minArc": 0,
+                "transformCurve": 0
+            },
+            "content": "Teste de temlate",
+            "subElements": []
+        },
+        "515ab986-d506-43f1-8bdc-2780ca85f5db": {
+            "id": "515ab986-d506-43f1-8bdc-2780ca85f5db",
+            "metadata": [],
+            "size": {
+                "width": 124,
+                "height": 42
+            },
+            "position": {
+                "x": 73.82608695652172,
+                "y": 135.96791304347823
+            },
+            "rotation": 0,
+            "flip": {
+                "x": false,
+                "y": false
+            },
+            "group": null,
+            "locked": false,
+            "keepProportions": false,
+            "opacity": 1,
+            "virtualGroup": null,
+            "tags": [],
+            "index": "a4",
+            "parentId": "",
+            "type": "box",
+            "border": {
+                "type": "none",
+                "size": 0,
+                "color": {
+                    "serializable": true,
+                    "id": "color-f315d665-e86f-4f19-82cf-a0fd131d44b1",
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "validForVariant": true
+                },
+                "radius": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            "background": {
+                "serializable": true,
+                "id": "color-9a913dd5-5aef-4b76-808d-9147c1b65eb7",
+                "r": 206,
+                "g": 206,
+                "b": 206,
+                "a": 1,
+                "validForVariant": true
+            },
+            "padding": {
+                "x": 0,
+                "y": 0
+            },
+            "subElements": []
+        }
+    }
+}

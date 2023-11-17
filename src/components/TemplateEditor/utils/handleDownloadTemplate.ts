@@ -1,5 +1,5 @@
 import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+import jsPDF, { HTMLFontFace } from "jspdf";
 import { RefObject } from "react";
 import { BoxElement, TemplateData, TextElement } from "../templateTypes";
 const SCALE_FOR_TEMPLATE_DOWNLOAD = 4;
@@ -45,15 +45,20 @@ const getFontFaces = (templateData: TemplateData) => {
     (element) => element?.type === "text"
   ) as TextElement[];
 
-  return textElements?.map((textElement) => ({
-    family: textElement?.fontFamily,
-    src: [
-      {
-        url: textElement?.fontUrl,
-        format: "truetype" as const,
-      },
-    ],
-  }));
+  return textElements?.map(
+    (textElement) =>
+      ({
+        family: textElement?.fontFamily,
+        weight: textElement?.fontWeight,
+        style: textElement?.fontStyle,
+        src: [
+          {
+            url: textElement?.fontUrl,
+            format: "truetype" as const,
+          },
+        ],
+      } as HTMLFontFace)
+  );
 };
 
 const downloadPDF = async (

@@ -73,6 +73,7 @@ interface TextOutline {
 export interface TextElement {
   id: string;
   size: Size;
+  formLabel?: string;
   position: Position;
   rotation: number;
   opacity: number;

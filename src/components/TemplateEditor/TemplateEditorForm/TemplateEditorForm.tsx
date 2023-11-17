@@ -19,7 +19,7 @@ const TemplateEditorForm = () => {
       (uploadedTemplateElement) => uploadedTemplateElement?.type === "text"
     )
     ?.map((uploadedTemplateElementText) => ({
-      label: "",
+      label: uploadedTemplateElementText?.formLabel || "",
       value: uploadedTemplateElementText?.content,
       name: uploadedTemplateElementText?.id,
     }));
