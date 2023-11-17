@@ -33,16 +33,17 @@
     "jspdf": "^2.5.1",
     "limiter": "^2.1.0",
     "next": "13.4.12",
+    "prisma": "^5.1.1",
     "react": "18.2.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
+    "react-dnd-touch-backend": "^16.0.1",
     "react-dom": "18.2.0",
     "react-drag-drop-files": "^2.3.10",
     "react-hook-form": "^7.45.2",
     "react-use": "^17.4.0",
     "typescript": "5.1.6",
-    "zustand": "^4.4.0",
-    "prisma": "^5.1.1"
+    "zustand": "^4.4.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",
