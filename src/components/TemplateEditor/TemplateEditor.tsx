@@ -1,4 +1,4 @@
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, HStack, Stack } from "@chakra-ui/react";
 import TemplateEditorForm from "./TemplateEditorForm";
 import useUploadedTemplateEditorStore from "../TemplateCreator/TemplateUploader/store/useUploadedTemplateEditorStore";
 import { useEffect } from "react";
@@ -11,7 +11,6 @@ import DownloadTemplateButtons from "./DownloadTemplateButtons";
 import TemplateDropArea from "./templateDragAndDrop/TemplateDropArea";
 import TemplateDraggablePreview from "./templateDragAndDrop/TemplateDraggablePreview";
 import formatUploadedTemplate from "./utils/formatUploadedTemplate";
-import Head from "next/head";
 import FontLoader from "./FontLoader";
 import mmToPixels from "./BackgroundTemplateEditorElement/util/mmToPixels";
 
@@ -50,14 +49,21 @@ const TemplateEditor = () => {
   if (isUploadedTemplateEmpty) return <TemplateIsNotAvailable />;
 
   return (
-    <HStack w="100%" spacing="0" h="100vh" overflow="hidden">
+    <Stack
+      w="100%"
+      spacing="0"
+      h="100vh"
+      alignItems="center"
+      overflow="hidden"
+      direction={{ base: "column", md: "row" }}
+    >
       <FontLoader />
       <TemplateDraggablePreview />
-      <Box w="50%">
+      <Box w={{ base: "100%", md: "50%" }}>
         <TemplateEditorForm />
         <DownloadTemplateButtons />
       </Box>
-      <Box w="50%">
+      <Box w={{ base: "100%", md: "50%" }}>
         <TemplateDropArea
           width={mmToPixels(
             uploadedTemplateEditor?.background?.pageConfig?.size?.width
@@ -69,7 +75,7 @@ const TemplateEditor = () => {
           <TemplateViewer uploadedTemplateEditor={uploadedTemplateEditor} />
         </TemplateDropArea>
       </Box>
-    </HStack>
+    </Stack>
   );
 };
 
